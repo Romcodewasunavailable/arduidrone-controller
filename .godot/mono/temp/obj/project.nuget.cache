@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "xIT7gWnR/ho=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\romai\\Documents\\arduidrone-controller\\Arduidrone Controller.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\romai\\.nuget\\packages\\godot.sourcegenerators\\4.4.1\\godot.sourcegenerators.4.4.1.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\godotsharp\\4.4.1\\godotsharp.4.4.1.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\godotsharpeditor\\4.4.1\\godotsharpeditor.4.4.1.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\8.0.0\\runtime.linux-arm.runtime.native.system.io.ports.8.0.0.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\8.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.8.0.0.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\8.0.0\\runtime.linux-x64.runtime.native.system.io.ports.8.0.0.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\runtime.native.system.io.ports\\8.0.0\\runtime.native.system.io.ports.8.0.0.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\8.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.8.0.0.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\8.0.0\\runtime.osx-x64.runtime.native.system.io.ports.8.0.0.nupkg.sha512",
+    "C:\\Users\\romai\\.nuget\\packages\\system.io.ports\\8.0.0\\system.io.ports.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

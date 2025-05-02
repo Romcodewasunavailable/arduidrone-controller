@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv4v4s03etgf3"]
+
+[ext_resource type="Script" uid="uid://lf8w3eausewg" path="res://scripts/rpm_display.gd" id="1_6c0va"]
+[ext_resource type="Texture2D" uid="uid://cq65f8tcrh524" path="res://visuals/circle.png" id="1_p7xv5"]
+[ext_resource type="LabelSettings" uid="uid://cm3usdihhjhxq" path="res://visuals/rpm_label_settings.tres" id="2_6c0va"]
+[ext_resource type="Gradient" uid="uid://cqfsv8hde2c1m" path="res://visuals/rpm_gradient.tres" id="2_uq4b5"]
+[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="3_lgs8q"]
+
+[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 253.0
+offset_bottom = 88.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_6c0va")
+max_rpm = 10000.0
+rpm = 3750.0
+rpm_gradient = ExtResource("2_uq4b5")
+texture_progress_bar = NodePath("PanelContainer/MarginContainer/HBoxContainer/TextureProgressBar")
+label = NodePath("PanelContainer/MarginContainer/HBoxContainer/Label")
+line = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(126.5, 44, 44, 44, 0, 0)
+width = 5.0
+end_cap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_lgs8q")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+value = 0.375
+fill_mode = 4
+texture_under = ExtResource("1_p7xv5")
+texture_progress = ExtResource("1_p7xv5")
+tint_under = Color(0.15, 0.15, 0.15, 1)
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "3750 RPM"
+label_settings = ExtResource("2_6c0va")

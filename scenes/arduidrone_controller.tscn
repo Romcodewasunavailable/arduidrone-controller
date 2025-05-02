@@ -1,0 +1,146 @@
+[gd_scene load_steps=6 format=3 uid="uid://v52yrc83mh5o"]
+
+[ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
+[ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
+[ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ue7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cf3k"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 37
+corner_radius_top_right = 37
+corner_radius_bottom_right = 37
+corner_radius_bottom_left = 37
+corner_detail = 16
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftJoystick" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -160.0
+offset_right = -150.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Rim" type="Panel" parent="LeftJoystick"]
+layout_mode = 0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x4ue7")
+
+[node name="Joystick" type="Panel" parent="LeftJoystick"]
+layout_mode = 0
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_8cf3k")
+
+[node name="RightJoystick" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = -160.0
+offset_right = 150.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Rim" type="Panel" parent="RightJoystick"]
+layout_mode = 0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x4ue7")
+
+[node name="Joystick" type="Panel" parent="RightJoystick"]
+layout_mode = 0
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_8cf3k")
+
+[node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -271.0
+offset_top = -56.0
+offset_right = 271.0
+offset_bottom = 456.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+offset_left = -283.0
+offset_top = -8.0
+offset_right = -30.0
+offset_bottom = 80.0
+line_anchor = Vector2(59, 62)
+
+[node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+offset_left = 551.0
+offset_top = -10.0
+offset_right = 804.0
+offset_bottom = 78.0
+line_anchor = Vector2(483, 62)
+
+[node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+offset_left = -281.0
+offset_top = 437.0
+offset_right = -28.0
+offset_bottom = 525.0
+line_anchor = Vector2(59, 450)
+
+[node name="RPMDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+offset_left = 557.0
+offset_top = 429.0
+offset_right = 810.0
+offset_bottom = 517.0
+line_anchor = Vector2(483, 450)
+
+[node name="DataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
+offset_left = 178.0
+offset_top = -167.0
+offset_right = 431.0
+offset_bottom = -20.0
+line_anchor = Vector2(271, 180)

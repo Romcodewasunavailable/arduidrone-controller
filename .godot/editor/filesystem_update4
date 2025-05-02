@@ -1,0 +1,5 @@
+res://scenes/data_display.tscn
+res://visuals/style_box.tres
+res://scripts/data_display.gd
+res://scenes/data_display_entry.tscn
+res://scripts/data_display_entry.gd
