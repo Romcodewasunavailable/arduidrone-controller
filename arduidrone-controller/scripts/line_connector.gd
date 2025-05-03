@@ -7,8 +7,8 @@ extends Control
 		line_anchor = value
 		update_line()
 
-@export var main_container: Container
 @export var line: Line2D
+@export var main_container: Container
 
 var last_position: Vector2
 var last_size: Vector2
