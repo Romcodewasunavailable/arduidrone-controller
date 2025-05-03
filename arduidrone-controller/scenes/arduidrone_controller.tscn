@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://v52yrc83mh5o"]
+[gd_scene load_steps=7 format=3 uid="uid://v52yrc83mh5o"]
 
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
 [ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
 [ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
+[ext_resource type="PackedScene" uid="uid://c7gt7a67m3mao" path="res://scenes/graph_display.tscn" id="4_q5x3l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ue7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -111,17 +112,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = -283.0
-offset_top = -8.0
-offset_right = -43.0
-offset_bottom = 80.0
+offset_left = -295.0
+offset_top = -17.0
+offset_right = -55.0
+offset_bottom = 71.0
 line_anchor = Vector2(59, 62)
 
 [node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = 551.0
-offset_top = -10.0
-offset_right = 791.0
-offset_bottom = 78.0
+offset_left = 596.0
+offset_top = -24.0
+offset_right = 836.0
+offset_bottom = 64.0
 line_anchor = Vector2(483, 62)
 
 [node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
@@ -139,8 +140,15 @@ offset_bottom = 517.0
 line_anchor = Vector2(483, 450)
 
 [node name="DataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
-offset_left = 178.0
-offset_top = -232.0
-offset_right = 428.0
-offset_bottom = -85.0
+offset_left = 126.0
+offset_top = -273.0
+offset_right = 376.0
+offset_bottom = -126.0
 line_anchor = Vector2(271, 180)
+
+[node name="GraphDisplay" parent="DroneModelDisplay/DataDisplay" instance=ExtResource("4_q5x3l")]
+offset_left = 349.0
+offset_top = -191.0
+offset_right = 713.0
+offset_bottom = 161.0
+grid_color = null

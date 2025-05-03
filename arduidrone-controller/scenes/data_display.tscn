@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sa3gr"]
 font_size = 30
 
-[node name="DataDisplay" type="Control" node_paths=PackedStringArray("title_label", "entry_container", "main_container", "line")]
+[node name="DataDisplay" type="Control" node_paths=PackedStringArray("title_label", "entry_container", "line", "main_container")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 250.0
@@ -17,19 +17,19 @@ keys = PackedStringArray("yaw", "pitch", "roll")
 values = [0.0, 0.0, 0.0]
 title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
 entry_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/EntryContainer")
-main_container = NodePath("PanelContainer")
 line = NodePath("Line2D")
+main_container = NodePath("PanelContainer")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(125, 35, 35, 35, 0, 0)
+points = PackedVector2Array(125, 73.5, 73.5, 73.5, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
-offset_right = 169.0
-offset_bottom = 70.0
+offset_right = 250.0
+offset_bottom = 147.0
 theme_override_styles/panel = ExtResource("3_ec15o")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]

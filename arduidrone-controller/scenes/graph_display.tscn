@@ -6,28 +6,77 @@
 [sub_resource type="LabelSettings" id="LabelSettings_4nlb8"]
 font_size = 30
 
-[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("line", "main_container")]
+[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("graph_control", "line", "main_container")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 364.0
+offset_bottom = 352.0
 script = ExtResource("1_4nlb8")
+graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ColorRect")
 line = NodePath("Line2D")
 main_container = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(182, 176, 176, 176, 0, 0)
+width = 5.0
+end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 364.0
+offset_bottom = 352.0
 theme_override_styles/panel = ExtResource("2_mhrpt")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 text = "Pitch PID"
 label_settings = SubResource("LabelSettings_4nlb8")
+
+[node name="LabelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GraphLabel" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer/GraphLabel"]
+custom_minimum_size = Vector2(20, 2)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer/GraphLabel"]
+layout_mode = 2
+text = "Pitch"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 20
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="CheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Follow"
+
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ColorRect" to="." method="_on_color_rect_gui_input"]

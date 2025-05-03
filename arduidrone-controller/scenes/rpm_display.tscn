@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://lf8w3eausewg" path="res://scripts/rpm_display.gd" id="1_6c0va"]
 [ext_resource type="Texture2D" uid="uid://cq65f8tcrh524" path="res://visuals/circle.png" id="1_p7xv5"]
-[ext_resource type="LabelSettings" uid="uid://cm3usdihhjhxq" path="res://visuals/rpm_label_settings.tres" id="2_6c0va"]
 [ext_resource type="Gradient" uid="uid://cqfsv8hde2c1m" path="res://visuals/rpm_gradient.tres" id="2_uq4b5"]
 [ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="3_lgs8q"]
 
-[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "main_container", "line")]
+[sub_resource type="LabelSettings" id="LabelSettings_uq4b5"]
+font_size = 30
+
+[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line", "main_container")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 240.0
@@ -19,11 +21,11 @@ rpm = 3750.0
 rpm_gradient = ExtResource("2_uq4b5")
 texture_progress_bar = NodePath("PanelContainer/MarginContainer/HBoxContainer/TextureProgressBar")
 label = NodePath("PanelContainer/MarginContainer/HBoxContainer/Label")
-main_container = NodePath("PanelContainer")
 line = NodePath("Line2D")
+main_container = NodePath("PanelContainer")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 0, 0, 0)
+points = PackedVector2Array(149.5, 44, 44, 44, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
@@ -63,4 +65,4 @@ tint_under = Color(0.15, 0.15, 0.15, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "3750 RPM"
-label_settings = ExtResource("2_6c0va")
+label_settings = SubResource("LabelSettings_uq4b5")

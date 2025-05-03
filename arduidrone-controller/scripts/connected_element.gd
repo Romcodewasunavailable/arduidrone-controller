@@ -1,5 +1,5 @@
 @tool
-class_name LineConnector
+class_name ConnectedElement
 extends Control
 
 @export var line_anchor: Vector2:
@@ -12,13 +12,14 @@ extends Control
 
 var last_position: Vector2
 var last_size: Vector2
+var last_container_size: Vector2
 
 
 func update_line():
 	if line == null:
 		return
 	
-	var center = size * 0.5
+	var center = size / 2.0
 	var end = line_anchor - position
 	
 	var mid: Vector2
@@ -39,7 +40,13 @@ func _process(_delta):
 	if position != last_position:
 		update_line()
 		last_position = position
-	if main_container.size != last_size:
+	
+	if size != last_size or main_container.size != last_container_size:
+		if size != last_size:
+			main_container.size = size
+		else:
+			size = main_container.size
+		
 		update_line()
-		size = main_container.size
-		last_size = main_container.size
+		last_size = size
+		last_container_size = size

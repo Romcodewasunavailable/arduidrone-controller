@@ -1,6 +1,6 @@
 @tool
 class_name DataDisplay
-extends LineConnector
+extends ConnectedElement
 
 @export var title: String:
 	set(value):

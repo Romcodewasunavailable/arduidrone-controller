@@ -1,6 +1,6 @@
 @tool
 class_name RpmDisplay
-extends LineConnector
+extends ConnectedElement
 
 @export var max_rpm: float:
 	set(value):
