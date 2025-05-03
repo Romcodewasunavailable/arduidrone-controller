@@ -1,35 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckdsqituoufmc"]
+[gd_scene load_steps=4 format=3 uid="uid://ckdsqituoufmc"]
 
 [ext_resource type="Script" uid="uid://dld70credi3y0" path="res://scripts/data_display.gd" id="1_8qxge"]
 [ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="3_ec15o"]
-[ext_resource type="PackedScene" uid="uid://ch3uhxh2ce1ew" path="res://scenes/data_display_entry.tscn" id="3_sa3gr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sa3gr"]
 font_size = 30
 
-[node name="DataDisplay" type="Control" node_paths=PackedStringArray("line")]
+[node name="DataDisplay" type="Control" node_paths=PackedStringArray("title_label", "entry_container", "main_container", "line")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 253.0
+offset_right = 250.0
 offset_bottom = 147.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 script = ExtResource("1_8qxge")
-data = Array[Array]([["key", 0.0]])
+title = "Gyro Data"
+keys = PackedStringArray("yaw", "pitch", "roll")
+values = [0.0, 0.0, 0.0]
+title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
+entry_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/EntryContainer")
+main_container = NodePath("PanelContainer")
 line = NodePath("Line2D")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(126.5, 73.5, 73.5, 73.5, 0, 0)
+points = PackedVector2Array(125, 35, 35, 35, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 169.0
+offset_bottom = 70.0
 theme_override_styles/panel = ExtResource("3_ec15o")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -49,5 +49,5 @@ text = "Gyro Data"
 label_settings = SubResource("LabelSettings_sa3gr")
 horizontal_alignment = 1
 
-[node name="DataDisplayEntry" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_sa3gr")]
+[node name="EntryContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

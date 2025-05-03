@@ -1,5 +1,11 @@
 res://scenes/data_display.tscn
 res://visuals/style_box.tres
+res://scenes/arduidrone_controller.tscn
 res://scripts/data_display.gd
-res://scenes/data_display_entry.tscn
-res://scripts/data_display_entry.gd
+res://scenes/drone_model_display.tscn
+res://scenes/rpm_display.tscn
+res://scenes/data_entry_display.tscn
+res://scenes/graph_display.tscn
+res://scripts/arduino.cs
+res://scripts/data_entry_display.gd
+res://scripts/rpm_display.gd

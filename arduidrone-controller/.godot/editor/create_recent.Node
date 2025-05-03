@@ -1,9 +1,10 @@
+Line2D
+PanelContainer
+LineConnector
+VBoxContainer
 Control
 HBoxContainer
 Label
-VBoxContainer
-Line2D
-PanelContainer
 ProgressBar
 MarginContainer
 TextureProgressBar

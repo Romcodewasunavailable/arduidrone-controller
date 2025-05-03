@@ -6,10 +6,10 @@
 [ext_resource type="Gradient" uid="uid://cqfsv8hde2c1m" path="res://visuals/rpm_gradient.tres" id="2_uq4b5"]
 [ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="3_lgs8q"]
 
-[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line")]
+[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "main_container", "line")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 253.0
+offset_right = 240.0
 offset_bottom = 88.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -19,20 +19,18 @@ rpm = 3750.0
 rpm_gradient = ExtResource("2_uq4b5")
 texture_progress_bar = NodePath("PanelContainer/MarginContainer/HBoxContainer/TextureProgressBar")
 label = NodePath("PanelContainer/MarginContainer/HBoxContainer/Label")
+main_container = NodePath("PanelContainer")
 line = NodePath("Line2D")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(126.5, 44, 44, 44, 0, 0)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 240.0
+offset_bottom = 88.0
 theme_override_styles/panel = ExtResource("3_lgs8q")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]

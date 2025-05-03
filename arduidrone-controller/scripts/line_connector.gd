@@ -2,11 +2,12 @@
 class_name LineConnector
 extends Control
 
-@export var line_anchor: Vector2 = Vector2.ZERO:
+@export var line_anchor: Vector2:
 	set(value):
 		line_anchor = value
 		update_line()
 
+@export var main_container: Container
 @export var line: Line2D
 
 var last_position: Vector2
@@ -38,6 +39,7 @@ func _process(_delta):
 	if position != last_position:
 		update_line()
 		last_position = position
-	if size != last_size:
+	if main_container.size != last_size:
 		update_line()
-		last_size = size
+		size = main_container.size
+		last_size = main_container.size

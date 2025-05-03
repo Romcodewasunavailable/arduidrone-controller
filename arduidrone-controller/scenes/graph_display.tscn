@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7gt7a67m3mao"]
+
+[ext_resource type="Script" uid="uid://2v2ndgpk4owl" path="res://scripts/graph_display.gd" id="1_4nlb8"]
+[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="2_mhrpt"]
+
+[node name="GraphDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4nlb8")
+metadata/_custom_type_script = "uid://c7xa78egerg3k"
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("2_mhrpt")
