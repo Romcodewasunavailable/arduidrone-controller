@@ -6,13 +6,24 @@
 [sub_resource type="LabelSettings" id="LabelSettings_4nlb8"]
 font_size = 30
 
-[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("graph_control", "line", "main_container")]
+[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("title_label", "label_container", "graph_control", "grid_control", "line_control", "follow_button", "update_timer", "line", "main_container")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 364.0
 offset_bottom = 352.0
 script = ExtResource("1_4nlb8")
-graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ColorRect")
+title = "PitchPID"
+keys = PackedStringArray()
+values = PackedFloat32Array()
+colors = PackedColorArray()
+update_hz = 60.0
+title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
+label_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/LabelContainer")
+graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl")
+grid_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl/GridControl")
+line_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl/LineControl")
+follow_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FollowCheckButton")
+update_timer = NodePath("UpdateTimer")
 line = NodePath("Line2D")
 main_container = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
@@ -42,7 +53,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Pitch PID"
+text = "PitchPID"
 label_settings = SubResource("LabelSettings_4nlb8")
 
 [node name="LabelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -50,33 +61,56 @@ layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="GraphLabel" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer"]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer/GraphLabel"]
-custom_minimum_size = Vector2(20, 2)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer/GraphLabel"]
-layout_mode = 2
-text = "Pitch"
-
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 25
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="GraphControl" type="ColorRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 color = Color(0.15, 0.15, 0.15, 1)
 
-[node name="CheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="GridControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="LineControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+alignment = 1
+
+[node name="ClearButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
 size_flags_vertical = 0
+text = "Clear"
+
+[node name="FollowCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+button_pressed = true
 text = "Follow"
 
-[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ColorRect" to="." method="_on_color_rect_gui_input"]
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 0.0166667
+autostart = true
+
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl" to="." method="_on_color_rect_gui_input"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FollowCheckButton" to="." method="_on_follow_button_toggled"]
+[connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

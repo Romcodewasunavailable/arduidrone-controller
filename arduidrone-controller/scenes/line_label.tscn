@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dikdnf4hkf84t"]
+
+[ext_resource type="Script" uid="uid://c6vslshl4nn7h" path="res://scripts/line_label.gd" id="1_2oav5"]
+
+[node name="LineLabel" type="HBoxContainer" node_paths=PackedStringArray("color_rect", "label")]
+theme_override_constants/separation = 8
+script = ExtResource("1_2oav5")
+color_rect = NodePath("ColorRect")
+label = NodePath("Label")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(20, 2)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2

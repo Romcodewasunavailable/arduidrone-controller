@@ -21,25 +21,27 @@ var last_values: Array[Variant]
 
 
 func update_data():
+	if entry_container == null:
+		return
 	if data_entry_display == null:
 		data_entry_display = load("res://scenes/data_entry_display.tscn")
 	
 	for i in range(keys.size()):
-		var entry_display: DataEntryDisplay
+		var new_data_entry_display: DataEntryDisplay
 		if i < entry_container.get_child_count():
-			entry_display = entry_container.get_child(i)
+			new_data_entry_display = entry_container.get_child(i)
 		else:
-			entry_display = data_entry_display.instantiate()
-			entry_container.add_child(entry_display)
+			new_data_entry_display = data_entry_display.instantiate()
+			entry_container.add_child(new_data_entry_display)
 		
-		entry_display.key = keys[i]
+		new_data_entry_display.key = keys[i]
 		if i < values.size():
-			entry_display.value = values[i]
+			new_data_entry_display.value = values[i]
 	
 	while entry_container.get_child_count() > keys.size():
-		var entry_display = entry_container.get_child(entry_container.get_child_count() - 1)
-		entry_container.remove_child(entry_display)
-		entry_display.queue_free()
+		var child = entry_container.get_child(entry_container.get_child_count() - 1)
+		entry_container.remove_child(child)
+		child.queue_free()
 
 
 func _process(_delta):
