@@ -1,8 +1,10 @@
+DragResizeBox
+Panel
+Control
 Button
 HBoxContainer
 Line2D
 Timer
-Control
 MarginContainer
 CheckButton
 ColorRect
@@ -11,5 +13,3 @@ RichTextLabel
 VBoxContainer
 PanelContainer
 ProgressBar
-TextureProgressBar
-TextureRect

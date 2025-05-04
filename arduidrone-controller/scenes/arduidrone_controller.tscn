@@ -27,7 +27,7 @@ corner_radius_bottom_right = 37
 corner_radius_bottom_left = 37
 corner_detail = 16
 
-[node name="UI" type="Control"]
+[node name="ArduidronController" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,10 +112,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = -295.0
-offset_top = -17.0
-offset_right = -55.0
-offset_bottom = 71.0
+offset_left = -348.0
+offset_top = 98.0
+offset_right = -108.0
+offset_bottom = 186.0
 line_anchor = Vector2(59, 62)
 
 [node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
@@ -140,19 +140,19 @@ offset_bottom = 517.0
 line_anchor = Vector2(483, 450)
 
 [node name="DataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
-offset_left = 126.0
-offset_top = -273.0
-offset_right = 376.0
-offset_bottom = -126.0
+offset_left = 574.0
+offset_top = -122.0
+offset_right = 824.0
+offset_bottom = 25.0
 line_anchor = Vector2(271, 180)
 
-[node name="GraphDisplay" parent="DroneModelDisplay/DataDisplay" instance=ExtResource("4_q5x3l")]
-offset_left = 356.0
-offset_top = -181.0
-offset_right = 1073.0
-offset_bottom = 263.0
+[node name="GraphDisplay" parent="DroneModelDisplay" instance=ExtResource("4_q5x3l")]
+offset_left = 62.0
+offset_top = -403.0
+offset_right = 426.0
+offset_bottom = -46.0
 title = "Graph Test"
 keys = PackedStringArray("sin(t)", "cos(t)")
 values = PackedFloat32Array(0, 0)
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
-line_anchor = Vector2(250, 97)
+line_anchor = Vector2(271, 180)

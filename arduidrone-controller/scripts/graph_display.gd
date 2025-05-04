@@ -21,7 +21,7 @@ extends ConnectedElement
 @export var graph_origin := Vector2(0.0, 100.0)
 @export var graph_scale := Vector2(50.0, 50.0)
 
-@export var max_axis_labels := 15
+@export var max_axis_label_density := 3.0
 @export var follow := true
 @export var grid_color := Color(0.2, 0.2, 0.2)
 @export var zero_color := Color.WHITE
@@ -55,10 +55,15 @@ func format_label(value: float) -> String:
 	return str(value)
 
 
-func compute_step(scale: float, size: float) -> float:
-	var step := pow(10.0, floor(log(1.0 / scale) / log(10)))
-	while size / (scale * step) > max_axis_labels:
-		step *= 10
+func compute_step(_scale: float, _size: float) -> float:
+	var step := pow(10.0, floor(log(1.0 / _scale) / log(10)))
+	var parity = false
+	while _size / (_scale * step) > max_axis_label_density * _size / 100.0:
+		if parity:
+			step *= 2
+		else:
+			step *= 5
+		parity = not parity
 	return step
 
 
@@ -90,7 +95,7 @@ func update_grid() -> void:
 	for child in grid_control.get_children():
 		child.queue_free()
 	
-	var x_step = compute_step(graph_scale.x, graph_size.x)
+	var x_step = compute_step(graph_scale.x * 0.75, graph_size.x)
 	var x_start = (floor(-graph_origin.x / graph_scale.x / x_step) + 1) * x_step
 	var x = x_start
 	while graph_origin.x + x * graph_scale.x < graph_size.x:
@@ -115,7 +120,7 @@ func update_grid() -> void:
 		var color_rect = ColorRect.new()
 		color_rect.position = Vector2(0, graph_origin.y + y * graph_scale.y)
 		color_rect.size = Vector2(graph_size.x, 1)
-		color_rect.color = zero_color if y == 0.0 else grid_color
+		color_rect.color = zero_color if is_zero_approx(y) else grid_color
 		color_rect.mouse_filter = Control.MOUSE_FILTER_PASS
 		grid_control.add_child(color_rect)
 		

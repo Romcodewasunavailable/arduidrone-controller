@@ -8,7 +8,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_uq4b5"]
 font_size = 30
 
-[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line", "main_container")]
+[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 240.0
@@ -22,10 +22,10 @@ rpm_gradient = ExtResource("2_uq4b5")
 texture_progress_bar = NodePath("PanelContainer/MarginContainer/HBoxContainer/TextureProgressBar")
 label = NodePath("PanelContainer/MarginContainer/HBoxContainer/Label")
 line = NodePath("Line2D")
-main_container = NodePath("PanelContainer")
+main_control = NodePath("PanelContainer")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(149.5, 44, 44, 44, 0, 0)
+points = PackedVector2Array(120, 44, 44, 44, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
@@ -33,6 +33,7 @@ end_cap_mode = 2
 layout_mode = 1
 offset_right = 240.0
 offset_bottom = 88.0
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("3_lgs8q")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -64,5 +65,6 @@ tint_under = Color(0.15, 0.15, 0.15, 1)
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "3750 RPM"
 label_settings = SubResource("LabelSettings_uq4b5")

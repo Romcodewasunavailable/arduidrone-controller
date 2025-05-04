@@ -6,13 +6,12 @@
 [sub_resource type="LabelSettings" id="LabelSettings_4nlb8"]
 font_size = 30
 
-[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("title_label", "label_container", "graph_control", "grid_control", "line_control", "follow_button", "update_timer", "line", "main_container")]
+[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("title_label", "label_container", "graph_control", "grid_control", "line_control", "follow_button", "update_timer", "line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 364.0
-offset_bottom = 352.0
+offset_bottom = 334.0
 script = ExtResource("1_4nlb8")
-title = "PitchPID"
 keys = PackedStringArray()
 values = PackedFloat32Array()
 colors = PackedColorArray()
@@ -25,18 +24,19 @@ line_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginCont
 follow_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FollowCheckButton")
 update_timer = NodePath("UpdateTimer")
 line = NodePath("Line2D")
-main_container = NodePath("PanelContainer")
+main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(182, 176, 176, 176, 0, 0)
+points = PackedVector2Array(182, 167, 167, 167, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 364.0
-offset_bottom = 352.0
+offset_bottom = 334.0
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_mhrpt")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -53,7 +53,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "PitchPID"
+mouse_filter = 1
 label_settings = SubResource("LabelSettings_4nlb8")
 
 [node name="LabelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -69,6 +69,7 @@ theme_override_constants/margin_bottom = 25
 [node name="GraphControl" type="ColorRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.15, 0.15, 0.15, 1)
 
 [node name="GridControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl"]

@@ -1,6 +1,6 @@
 @tool
 class_name ConnectedElement
-extends Control
+extends DragResizeBox
 
 @export var line_anchor: Vector2:
 	set(value):
@@ -8,7 +8,6 @@ extends Control
 		update_line()
 
 @export var line: Line2D
-@export var main_container: Container
 
 var last_position: Vector2
 var last_size: Vector2
@@ -41,11 +40,11 @@ func _process(_delta):
 		update_line()
 		last_position = position
 	
-	if size != last_size or main_container.size != last_container_size:
+	if size != last_size or main_control.size != last_container_size:
 		if size != last_size:
-			main_container.size = size
+			main_control.size = size
 		else:
-			size = main_container.size
+			size = main_control.size
 		
 		update_line()
 		last_size = size

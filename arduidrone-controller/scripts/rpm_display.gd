@@ -20,7 +20,7 @@ extends ConnectedElement
 func update_display():
 	if texture_progress_bar == null or label == null:
 		return
-	
+
 	texture_progress_bar.value = rpm / max_rpm
 	texture_progress_bar.tint_progress = rpm_gradient.sample(texture_progress_bar.value)
 	label.text = str(roundi(rpm)) + " RPM"

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b06qn2238wigf"]
+[gd_scene load_steps=6 format=3 uid="uid://b06qn2238wigf"]
 
+[ext_resource type="Script" uid="uid://cl6b7qcolyssf" path="res://scripts/drag_resize_box.gd" id="1_8lt05"]
 [ext_resource type="ArrayMesh" uid="uid://b8fc0dj88py0j" path="res://visuals/arduidrone_model.obj" id="1_k23hk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3h20d"]
@@ -11,17 +12,24 @@ sky_material = SubResource("ProceduralSkyMaterial_3h20d")
 background_mode = 2
 sky = SubResource("Sky_y6lnv")
 
-[node name="DroneModelDisplay" type="Control"]
+[node name="DroneModelDisplay" type="Control" node_paths=PackedStringArray("main_control")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 542.0
 offset_bottom = 512.0
 size_flags_horizontal = 0
+script = ExtResource("1_8lt05")
+resizeable = false
+main_control = NodePath("MarginContainer")
+metadata/_custom_type_script = "uid://cl6b7qcolyssf"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-offset_right = 542.0
-offset_bottom = 512.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_left = 15
@@ -49,5 +57,6 @@ transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
 environment = SubResource("Environment_l6ovh")
 projection = 1
+current = true
 fov = 20.0
 size = 0.35
