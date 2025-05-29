@@ -1,3 +1,6 @@
+Terminal
+ConnectedElement
+UDPClient
 DragResizeBox
 Panel
 Control
@@ -9,7 +12,3 @@ MarginContainer
 CheckButton
 ColorRect
 Label
-RichTextLabel
-VBoxContainer
-PanelContainer
-ProgressBar

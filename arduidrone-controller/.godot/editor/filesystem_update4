@@ -1,9 +1,13 @@
-res://scenes/graph_display.tscn
+res://scenes/arduidrone_controller.tscn
 res://visuals/style_box.tres
 res://scenes/drone_model_display.tscn
-res://scenes/arduidrone_controller.tscn
 res://scenes/rpm_display.tscn
 res://scenes/data_display.tscn
 res://scenes/data_entry_display.tscn
+res://scenes/graph_display.tscn
 res://scenes/line_label.tscn
-res://scripts/graph_display.gd
+res://scripts/arduino.cs
+res://scripts/udp_client.gd
+res://scripts/arduidrone_controller.gd
+res://scenes/terminal.tscn
+res://scripts/terminal.gd

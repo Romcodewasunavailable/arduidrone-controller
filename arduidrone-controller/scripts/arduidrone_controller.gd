@@ -1,13 +1,18 @@
-extends Node3D
+extends Control
 
-var left_joystick = Vector2.ZERO
-var right_joystick = Vector2.ZERO
+var udp_client = UDPClient.new()
+
+
+func _on_udp_client_received(message: String, ip: String, port: int) -> void:
+	print("Received from %s:%d -> %s" % [ip, port, message])
+
 
 func _ready() -> void:
-	pass
+	udp_client.connect("received", _on_udp_client_received)
+	udp_client.listen(12345)
+	udp_client.set_dest_address("192.168.1.6", 12345)
+	udp_client.send("Hello myself, this is myself !")
+
 
 func _process(_delta: float) -> void:
-	left_joystick = Vector2(Input.get_axis("yaw_left", "yaw_right"), Input.get_axis("thrust_down", "thrust_up"))
-	right_joystick = Vector2(Input.get_axis("roll_left", "roll_right"), Input.get_axis("pitch_up", "pitch_down"))
-	$UI/LeftJoystick/Joystick.position = Vector2(left_joystick.x * 25 - 37.5, -left_joystick.y * 25 - 37.5)
-	$UI/RightJoystick/Joystick.position = Vector2(right_joystick.x * 25 - 37.5, -right_joystick.y * 25 - 37.5)
+	pass

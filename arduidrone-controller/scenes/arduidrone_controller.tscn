@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://v52yrc83mh5o"]
+[gd_scene load_steps=8 format=3 uid="uid://v52yrc83mh5o"]
 
+[ext_resource type="Script" uid="uid://cosf6iekhhi8a" path="res://scripts/arduidrone_controller.gd" id="1_2navr"]
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
 [ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
 [ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
@@ -27,13 +28,14 @@ corner_radius_bottom_right = 37
 corner_radius_bottom_left = 37
 corner_detail = 16
 
-[node name="ArduidronController" type="Control"]
+[node name="ArduidroneController" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2navr")
 
 [node name="LeftJoystick" type="Control" parent="."]
 visible = false

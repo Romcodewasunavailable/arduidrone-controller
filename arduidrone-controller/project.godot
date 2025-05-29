@@ -15,10 +15,6 @@ run/main_scene="res://scenes/arduidrone_controller.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://visuals/icon.svg"
 
-[autoload]
-
-Arduino="*res://scripts/arduino.cs"
-
 [display]
 
 window/size/viewport_width=1920
