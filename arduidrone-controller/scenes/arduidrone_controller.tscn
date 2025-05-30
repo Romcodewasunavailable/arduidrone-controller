@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://v52yrc83mh5o"]
+[gd_scene load_steps=9 format=3 uid="uid://v52yrc83mh5o"]
 
 [ext_resource type="Script" uid="uid://cosf6iekhhi8a" path="res://scripts/arduidrone_controller.gd" id="1_2navr"]
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
 [ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
 [ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
 [ext_resource type="PackedScene" uid="uid://c7gt7a67m3mao" path="res://scenes/graph_display.tscn" id="4_q5x3l"]
+[ext_resource type="PackedScene" uid="uid://rw2uy735jv2s" path="res://scenes/terminal.tscn" id="6_2navr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ue7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -142,19 +143,29 @@ offset_bottom = 517.0
 line_anchor = Vector2(483, 450)
 
 [node name="DataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
-offset_left = 574.0
-offset_top = -122.0
+offset_left = 655.0
+offset_top = -148.0
 offset_right = 824.0
-offset_bottom = 25.0
+offset_bottom = -1.0
+title = "Gyro Data"
+keys = PackedStringArray("Yaw", "Pitch", "Roll")
+values = [0.0, 0.0, 0.0]
 line_anchor = Vector2(271, 180)
 
 [node name="GraphDisplay" parent="DroneModelDisplay" instance=ExtResource("4_q5x3l")]
-offset_left = 62.0
-offset_top = -403.0
-offset_right = 426.0
-offset_bottom = -46.0
+offset_left = 66.0
+offset_top = -442.0
+offset_right = 430.0
+offset_bottom = -120.0
 title = "Graph Test"
 keys = PackedStringArray("sin(t)", "cos(t)")
 values = PackedFloat32Array(0, 0)
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
 line_anchor = Vector2(271, 180)
+
+[node name="Terminal" parent="DroneModelDisplay" instance=ExtResource("6_2navr")]
+offset_left = -579.0
+offset_top = -251.0
+offset_right = -216.0
+offset_bottom = -32.0
+title = "Terminal Test"

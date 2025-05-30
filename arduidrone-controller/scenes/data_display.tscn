@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckdsqituoufmc"]
 
 [ext_resource type="Script" uid="uid://dld70credi3y0" path="res://scripts/data_display.gd" id="1_8qxge"]
-[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="3_ec15o"]
+[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="3_ec15o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sa3gr"]
 font_size = 30
@@ -9,27 +9,24 @@ font_size = 30
 [node name="DataDisplay" type="Control" node_paths=PackedStringArray("title_label", "entry_container", "line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 250.0
-offset_bottom = 147.0
+offset_right = 164.0
+offset_bottom = 70.0
 script = ExtResource("1_8qxge")
-title = "Gyro Data"
-keys = PackedStringArray("yaw", "pitch", "roll")
-values = [0.0, 0.0, 0.0]
+title = "Data Title"
 title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
 entry_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/EntryContainer")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(125, 73.5, 73.5, 73.5, 0, 0)
+points = PackedVector2Array(82, 35, 35, 35, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
-offset_right = 250.0
-offset_bottom = 147.0
+offset_right = 164.0
+offset_bottom = 70.0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("3_ec15o")
 
@@ -47,7 +44,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
-text = "Gyro Data"
+text = "Data Title"
 label_settings = SubResource("LabelSettings_sa3gr")
 horizontal_alignment = 1
 

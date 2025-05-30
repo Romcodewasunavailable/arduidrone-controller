@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://lf8w3eausewg" path="res://scripts/rpm_display.gd" id="1_6c0va"]
 [ext_resource type="Texture2D" uid="uid://cq65f8tcrh524" path="res://visuals/circle.png" id="1_p7xv5"]
 [ext_resource type="Gradient" uid="uid://cqfsv8hde2c1m" path="res://visuals/rpm_gradient.tres" id="2_uq4b5"]
-[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="3_lgs8q"]
+[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="3_lgs8q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uq4b5"]
 font_size = 30
@@ -60,7 +60,7 @@ value = 0.375
 fill_mode = 4
 texture_under = ExtResource("1_p7xv5")
 texture_progress = ExtResource("1_p7xv5")
-tint_under = Color(0.15, 0.15, 0.15, 1)
+tint_under = Color(0.14, 0.14, 0.14, 1)
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

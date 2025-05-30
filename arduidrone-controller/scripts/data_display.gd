@@ -4,9 +4,9 @@ extends ConnectedElement
 
 @export var title: String:
 	set(value):
+		title = value
 		if title_label != null:
 			title_label.text = value
-		title = value
 
 @export var keys: PackedStringArray
 @export var values: Array[Variant]
@@ -48,5 +48,5 @@ func _process(_delta):
 	super._process(_delta)
 	if keys != last_keys or values != last_values:
 		update_data()
-		last_keys = keys
-		last_values = values
+		last_keys = keys.duplicate()
+		last_values = values.duplicate()

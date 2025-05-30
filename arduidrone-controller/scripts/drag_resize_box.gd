@@ -19,6 +19,7 @@ var minimum_size := Vector2(RESIZE_MARGIN * 2, RESIZE_MARGIN * 2):
 var current_mode := Mode.NONE
 var current_resize_edge := ResizeEdge.NONE
 
+
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -40,6 +41,7 @@ func _gui_input(event: InputEvent) -> void:
 				global_position += event.relative
 			elif current_mode == Mode.RESIZE:
 				_resize(event.position)
+
 
 func _detect_resize_edge(mouse_position: Vector2) -> ResizeEdge:
 	var on_left := mouse_position.x <= RESIZE_MARGIN
@@ -65,6 +67,7 @@ func _detect_resize_edge(mouse_position: Vector2) -> ResizeEdge:
 		return ResizeEdge.BOTTOM
 
 	return ResizeEdge.NONE
+
 
 func _update_mouse_cursor(mouse_position: Vector2) -> void:
 	match _detect_resize_edge(mouse_position):

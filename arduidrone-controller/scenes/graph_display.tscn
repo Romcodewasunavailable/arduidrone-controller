@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7gt7a67m3mao"]
+[gd_scene load_steps=5 format=3 uid="uid://c7gt7a67m3mao"]
 
 [ext_resource type="Script" uid="uid://2v2ndgpk4owl" path="res://scripts/graph_display.gd" id="1_4nlb8"]
-[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/style_box.tres" id="2_mhrpt"]
+[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="2_mhrpt"]
+[ext_resource type="StyleBox" uid="uid://c5o8w4apbaidn" path="res://visuals/background_style_box.tres" id="3_mhrpt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4nlb8"]
 font_size = 30
@@ -10,32 +11,32 @@ font_size = 30
 layout_mode = 3
 anchors_preset = 0
 offset_right = 364.0
-offset_bottom = 334.0
+offset_bottom = 299.0
 script = ExtResource("1_4nlb8")
+title = "Graph Title"
 keys = PackedStringArray()
 values = PackedFloat32Array()
 colors = PackedColorArray()
-update_hz = 60.0
 title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
 label_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/LabelContainer")
-graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl")
-grid_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl/GridControl")
-line_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl/LineControl")
-follow_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FollowCheckButton")
+graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl")
+grid_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/GridControl")
+line_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/LineControl")
+follow_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/PanelContainer/FollowButton")
 update_timer = NodePath("UpdateTimer")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(182, 167, 167, 167, 0, 0)
+points = PackedVector2Array(182, 149.5, 149.5, 149.5, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 364.0
-offset_bottom = 334.0
+offset_bottom = 299.0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_mhrpt")
 
@@ -44,7 +45,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 35
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -54,6 +55,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 mouse_filter = 1
+text = "Graph Title"
 label_settings = SubResource("LabelSettings_4nlb8")
 
 [node name="LabelContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -61,57 +63,57 @@ layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_bottom = 25
-
-[node name="GraphControl" type="ColorRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="GraphControl" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 1
-color = Color(0.15, 0.15, 0.15, 1)
+theme_override_styles/panel = ExtResource("3_mhrpt")
 
-[node name="GridControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="LineControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="GridControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl"]
 layout_mode = 2
+mouse_filter = 1
+
+[node name="LineControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 alignment = 1
 
-[node name="ClearButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
-text = "Clear"
 
-[node name="FollowCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="FollowButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 button_pressed = true
 text = "Follow"
 
+[node name="ClearButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Clear"
+
 [node name="UpdateTimer" type="Timer" parent="."]
 wait_time = 0.0166667
 autostart = true
 
-[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GraphControl" to="." method="_on_color_rect_gui_input"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
-[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FollowCheckButton" to="." method="_on_follow_button_toggled"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/GraphControl" to="." method="_on_graph_control_gui_input"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/PanelContainer/FollowButton" to="." method="_on_follow_button_toggled"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
 [connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

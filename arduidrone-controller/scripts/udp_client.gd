@@ -3,14 +3,17 @@ extends RefCounted
 
 signal received(message: String, ip: String, port: int)
 
-const POLL_DELAY_MSEC := 10
-
+var _poll_delay_msec := 10
 var _dest_ip := ""
 var _dest_port := 0
 
 var _udp := PacketPeerUDP.new()
 var _thread := Thread.new()
 var _thread_running := false
+
+
+func set_poll_rate(rate_hz: float) -> void:
+	_poll_delay_msec = 1000.0 / rate_hz
 
 
 func set_dest_address(ip: String, port: int) -> void:
@@ -57,4 +60,4 @@ func _listener_loop() -> void:
 			var port = _udp.get_packet_port()
 			var message = data.get_string_from_utf8()
 			call_deferred("emit_signal", "received", message, ip, port)
-		OS.delay_msec(POLL_DELAY_MSEC)
+		OS.delay_msec(_poll_delay_msec)
