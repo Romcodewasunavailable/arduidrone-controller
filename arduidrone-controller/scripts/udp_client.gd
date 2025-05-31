@@ -1,6 +1,7 @@
 class_name UDPClient
 extends RefCounted
 
+signal system_output(message: String)
 signal received(message: String, ip: String, port: int)
 
 var _poll_delay_msec := 10
@@ -13,43 +14,59 @@ var _thread_running := false
 
 
 func set_poll_rate(rate_hz: float) -> void:
-	_poll_delay_msec = 1000.0 / rate_hz
+	_poll_delay_msec = roundi(1000.0 / rate_hz)
 
 
-func set_dest_address(ip: String, port: int) -> void:
-	print("Setting destination adress to %s:%d" % [ip, port])
+func set_dest_address(ip: String = "", port: int = 0) -> void:
+	if ip == "":
+		ip = _dest_ip
+	if port == 0:
+		port = _dest_port
+
+	system_output.emit("Setting destination address to %s:%d" % [ip, port])
+	var err = _udp.set_dest_address(ip, port)
+	if err != OK:
+		system_output.emit("Failed to set destination address: %s" % error_string(err))
+		return
 	_dest_ip = ip
 	_dest_port = port
-	_udp.set_dest_address(ip, port)
 
 
 func send(message: String) -> void:
-	print("Sending: %s" % message)
+	system_output.emit("Sending: %s" % message)
 	if _dest_ip == "" or _dest_port == 0:
-		push_error("Destination address not set")
+		var msg = "Destination address not set"
+		push_error(msg)
+		system_output.emit(msg)
 		return
 	_udp.put_packet(message.to_utf8_buffer())
 
 
 func listen(port: int) -> void:
-	print("Listening on port: %d" % port)
+	system_output.emit("Binding UDP socket to port: %d" % port)
 	var err = _udp.bind(port)
 	if err != OK:
-		push_error("Failed to bind UDP socket: %s" % err)
+		system_output.emit("Failed to bind UDP socket: %s" % error_string(err))
 		return
+	
+	system_output.emit("Starting listener thread")
 	if _thread_running:
-		push_warning("Listener thread already running")
+		var msg = "Listener thread already running"
+		push_warning(msg)
+		system_output.emit(msg)
 		return
-	print("Starting listener thread")
 	_thread_running = true
 	_thread.start(_listener_loop)
 
 
 func stop_listening() -> void:
-	print("Exiting listener thread")
+	system_output.emit("Exiting listener thread")
 	_thread_running = false
 	if _thread.is_started():
 		_thread.wait_to_finish()
+
+	system_output.emit("Closing UDP socket")
+	_udp.close()
 
 
 func _listener_loop() -> void:

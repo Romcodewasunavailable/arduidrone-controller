@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://v52yrc83mh5o"]
+[gd_scene load_steps=12 format=3 uid="uid://v52yrc83mh5o"]
 
 [ext_resource type="Script" uid="uid://cosf6iekhhi8a" path="res://scripts/arduidrone_controller.gd" id="1_2navr"]
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
+[ext_resource type="Texture2D" uid="uid://deb2hg1bg3bx1" path="res://visuals/pc_icon.png" id="2_4dh6d"]
+[ext_resource type="Script" uid="uid://cl6b7qcolyssf" path="res://scripts/drag_resize_box.gd" id="2_7hfh3"]
 [ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
 [ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
 [ext_resource type="PackedScene" uid="uid://c7gt7a67m3mao" path="res://scenes/graph_display.tscn" id="4_q5x3l"]
-[ext_resource type="PackedScene" uid="uid://rw2uy735jv2s" path="res://scenes/terminal.tscn" id="6_2navr"]
+[ext_resource type="PackedScene" uid="uid://rw2uy735jv2s" path="res://scenes/terminal.tscn" id="6_uc267"]
+[ext_resource type="Script" uid="uid://wgi8om6k8tga" path="res://scripts/udp_commands.gd" id="7_4dh6d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ue7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -100,6 +103,44 @@ offset_right = 37.5
 offset_bottom = 37.5
 theme_override_styles/panel = SubResource("StyleBoxFlat_8cf3k")
 
+[node name="PCIcon" type="Control" parent="." node_paths=PackedStringArray("main_control")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -650.0
+offset_top = 80.0
+offset_right = -394.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_7hfh3")
+resizeable = false
+main_control = NodePath("TextureRect")
+metadata/_custom_type_script = "uid://cl6b7qcolyssf"
+
+[node name="TextureRect" type="TextureRect" parent="PCIcon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4dh6d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Terminal" parent="PCIcon" instance=ExtResource("6_uc267")]
+offset_left = -216.0
+offset_top = -489.0
+offset_right = 233.0
+offset_bottom = -161.0
+title = "UDP Terminal"
+command_script = ExtResource("7_4dh6d")
+line_anchor = Vector2(50, 150)
+
 [node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
 layout_mode = 1
 anchors_preset = 8
@@ -107,10 +148,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -271.0
-offset_top = -56.0
-offset_right = 271.0
-offset_bottom = 456.0
+offset_left = 47.0
+offset_top = -42.0
+offset_right = 589.0
+offset_bottom = 470.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -162,10 +203,3 @@ keys = PackedStringArray("sin(t)", "cos(t)")
 values = PackedFloat32Array(0, 0)
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
 line_anchor = Vector2(271, 180)
-
-[node name="Terminal" parent="DroneModelDisplay" instance=ExtResource("6_2navr")]
-offset_left = -579.0
-offset_top = -251.0
-offset_right = -216.0
-offset_bottom = -32.0
-title = "Terminal Test"
