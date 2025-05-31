@@ -52,8 +52,10 @@ func _on_command_output(message: String) -> void:
 	add_entry(message)
 
 
-func _on_terminal_label_gui_input(event: InputEvent) -> void:
-	pass
+func _on_scroll_container_zoom(direction: int) -> void:
+	var new_font_size = max(terminal_label.get_theme_font_size("normal_font_size") + direction, 1)
+	terminal_label.add_theme_font_size_override("normal_font_size", new_font_size)
+	command_line_edit.add_theme_font_size_override("font_size", new_font_size)
 
 
 func _on_follow_button_toggled(toggled_on: bool) -> void:
@@ -65,7 +67,7 @@ func _on_clear_button_pressed() -> void:
 
 
 func _on_command_line_edit_text_submitted(command: String) -> void:
-	entries.append(command)
+	entries.append("> " + command)
 	command_line_edit.clear()
 
 	var expression = Expression.new()

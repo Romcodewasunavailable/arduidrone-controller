@@ -11,3 +11,5 @@ res://scripts/udp_terminal.gd
 res://scripts/udp_client.gd
 res://scripts/terminal.gd
 res://scripts/udp_commands.gd
+res://scripts/arduino.cs
+res://scripts/zoom_scroll_container.gd
