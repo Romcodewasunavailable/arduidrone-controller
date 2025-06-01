@@ -1,12 +1,11 @@
+res://scripts/udp_control_panel.gd
+res://scripts/terminal.gd
 res://scenes/arduidrone_controller.tscn
 res://visuals/normal_style_box.tres
 res://visuals/background_style_box.tres
-res://scripts/udp_client.gd
 res://scenes/drone_model_display.tscn
 res://scenes/rpm_display.tscn
 res://scenes/data_display.tscn
 res://scenes/graph_display.tscn
 res://scenes/terminal.tscn
-res://scripts/udp_commands.gd
-res://scripts/terminal.gd
-res://scripts/udp.gd
+res://scripts/arduino.cs

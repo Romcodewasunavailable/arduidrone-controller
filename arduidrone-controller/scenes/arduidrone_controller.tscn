@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
 [ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
 [ext_resource type="PackedScene" uid="uid://c7gt7a67m3mao" path="res://scenes/graph_display.tscn" id="4_q5x3l"]
-[ext_resource type="Script" uid="uid://c7xa78egerg3k" path="res://scripts/connected_element.gd" id="6_nbbtf"]
+[ext_resource type="Script" uid="uid://bkibeau1x468k" path="res://scripts/udp_control_panel.gd" id="6_nbbtf"]
 [ext_resource type="PackedScene" uid="uid://rw2uy735jv2s" path="res://scenes/terminal.tscn" id="6_uc267"]
 [ext_resource type="Script" uid="uid://wgi8om6k8tga" path="res://scripts/udp_commands.gd" id="7_4dh6d"]
 [ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="7_eyunb"]
@@ -206,7 +206,7 @@ layout_mode = 2
 size_flags_horizontal = 2
 text = "Destination address"
 
-[node name="LineEdit" type="LineEdit" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DestinationAddressLineEdit" type="LineEdit" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(146, 31)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -223,7 +223,7 @@ layout_mode = 2
 size_flags_horizontal = 2
 text = "Local port"
 
-[node name="LineEdit" type="LineEdit" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="LocalPortLineEdit" type="LineEdit" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(55, 31)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -298,3 +298,6 @@ title = "Gyro Graph"
 keys = PackedStringArray("sin(t)", "cos(t)")
 values = PackedFloat32Array(0, 0)
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+
+[connection signal="text_submitted" from="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DestinationAddressLineEdit" to="PCIcon/UDPTerminal/Control/UDPControlPanel" method="_on_destination_address_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/LocalPortLineEdit" to="PCIcon/UDPTerminal/Control/UDPControlPanel" method="_on_local_port_line_edit_text_submitted"]
