@@ -2,7 +2,7 @@ class_name UDPClient
 extends RefCounted
 
 signal system_output(message: String)
-signal received(message: String, ip: String, port: int)
+signal received(object: Variant, ip: String, port: int)
 
 var _poll_delay_msec := 10
 var _dest_ip := ""
@@ -32,14 +32,16 @@ func set_dest_address(ip: String = "", port: int = 0) -> void:
 	_dest_port = port
 
 
-func send(message: String) -> void:
-	system_output.emit("Sending: %s" % message)
+func send(object: Variant) -> void:
+	system_output.emit("Sending: %s" % str(object))
 	if _dest_ip == "" or _dest_port == 0:
-		var msg = "Destination address not set"
-		push_error(msg)
-		system_output.emit(msg)
+		system_output.emit("Destination address not set")
 		return
-	_udp.put_packet(message.to_utf8_buffer())
+	var result = Messagepack.encode(object)
+	if result.status != OK:
+		system_output.emit("Failed to encode messagepack: %s" % error_string(result.status))
+		return
+	_udp.put_packet(result.value)
 
 
 func listen(port: int) -> void:
@@ -48,12 +50,10 @@ func listen(port: int) -> void:
 	if err != OK:
 		system_output.emit("Failed to bind UDP socket: %s" % error_string(err))
 		return
-	
+
 	system_output.emit("Starting listener thread")
 	if _thread_running:
-		var msg = "Listener thread already running"
-		push_warning(msg)
-		system_output.emit(msg)
+		system_output.emit("Listener thread already running")
 		return
 	_thread_running = true
 	_thread.start(_listener_loop)
@@ -75,6 +75,10 @@ func _listener_loop() -> void:
 			var data = _udp.get_packet()
 			var ip = _udp.get_packet_ip()
 			var port = _udp.get_packet_port()
-			var message = data.get_string_from_utf8()
-			call_deferred("emit_signal", "received", message, ip, port)
+			var result = Messagepack.decode(data)
+			if result.status != OK:
+				print(result)
+				call_deferred("emit_signal", "system_output", "Failed to decode messagepack: %s" % error_string(result.status))
+			else:
+				call_deferred("emit_signal", "received", result.value, ip, port)
 		OS.delay_msec(_poll_delay_msec)

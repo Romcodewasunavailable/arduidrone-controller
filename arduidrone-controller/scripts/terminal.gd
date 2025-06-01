@@ -96,12 +96,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	super._process(_delta)
 
-	if commands != null:
+	if not Engine.is_editor_hint():
 		commands._process(_delta)
 
 	if entries != last_entries:
 		update_terminal_label()
-		update_scroll()
 		last_entries = entries.duplicate()
 
 	if (

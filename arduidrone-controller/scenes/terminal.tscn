@@ -26,7 +26,7 @@ font_size = 30
 layout_mode = 3
 anchors_preset = 0
 offset_right = 224.0
-offset_bottom = 99.0
+offset_bottom = 105.0
 script = ExtResource("1_sy66w")
 title = "Terminal Title"
 entries = PackedStringArray()
@@ -41,7 +41,7 @@ main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(112, 49.5, 49.5, 49.5, 0, 0)
+points = PackedVector2Array(112, 52.5, 52.5, 52.5, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
@@ -79,7 +79,7 @@ theme_override_styles/panel = ExtResource("3_vs6ym")
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_vertical = 7
+scroll_vertical = 8
 script = ExtResource("4_dhnb1")
 
 [node name="ScrolledContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer"]
@@ -95,7 +95,6 @@ theme_override_constants/margin_bottom = 4
 clip_contents = false
 layout_mode = 2
 focus_mode = 2
-theme_override_font_sizes/normal_font_size = 12
 theme_override_styles/fill = SubResource("StyleBoxEmpty_2u1pf")
 theme_override_styles/background = SubResource("StyleBoxEmpty_g6hjw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vs6ym")
@@ -151,7 +150,6 @@ theme_override_constants/margin_bottom = 4
 
 [node name="CommandLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dhnb1")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_4vtf0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ojupu")
