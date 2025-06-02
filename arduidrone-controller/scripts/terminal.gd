@@ -101,6 +101,7 @@ func _process(_delta: float) -> void:
 
 	if entries != last_entries:
 		update_terminal_label()
+		update_scroll()
 		last_entries = entries.duplicate()
 
 	if (

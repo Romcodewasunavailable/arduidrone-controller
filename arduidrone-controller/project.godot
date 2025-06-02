@@ -18,6 +18,7 @@ config/icon="res://visuals/icon.svg"
 [autoload]
 
 UDP="*res://scripts/udp.gd"
+Controller="*res://scripts/controller.gd"
 
 [display]
 
@@ -28,46 +29,3 @@ window/size/mode=2
 [dotnet]
 
 project/assembly_name="Arduidrone Controller"
-
-[input]
-
-thrust_up={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
-]
-}
-thrust_down={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
-]
-}
-yaw_left={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
-]
-}
-yaw_right={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
-]
-}
-pitch_up={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
-]
-}
-pitch_down={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":-1.0,"script":null)
-]
-}
-roll_left={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
-]
-}
-roll_right={
-"deadzone": 0.05,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
-]
-}

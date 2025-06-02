@@ -1,5 +1,3 @@
-res://scripts/udp_control_panel.gd
-res://scripts/terminal.gd
 res://scenes/arduidrone_controller.tscn
 res://visuals/normal_style_box.tres
 res://visuals/background_style_box.tres
@@ -8,4 +6,5 @@ res://scenes/rpm_display.tscn
 res://scenes/data_display.tscn
 res://scenes/graph_display.tscn
 res://scenes/terminal.tscn
-res://scripts/arduino.cs
+res://scripts/controller.gd
+res://scripts/terminal.gd
