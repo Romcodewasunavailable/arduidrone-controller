@@ -81,7 +81,7 @@ func update_labels():
 			new_line_label = line_label.instantiate()
 			label_container.add_child(new_line_label)
 
-		new_line_label.text = keys[i]
+		new_line_label.text = keys[i].capitalize()
 		if i < colors.size():
 			new_line_label.color = colors[i]
 
@@ -235,9 +235,3 @@ func _process(_delta: float) -> void:
 		update_labels()
 		last_keys = keys.duplicate()
 		last_colors = colors.duplicate()
-
-	if Engine.is_editor_hint():
-		return
-
-	values[0] = sin(time)
-	values[1] = cos(time)

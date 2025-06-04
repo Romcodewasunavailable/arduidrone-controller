@@ -77,7 +77,6 @@ func _listener_loop() -> void:
 			var port = _udp.get_packet_port()
 			var result = Messagepack.decode(data)
 			if result.status != OK:
-				print(result)
 				call_deferred("emit_signal", "system_output", "Failed to decode messagepack: %s" % error_string(result.status))
 			else:
 				call_deferred("emit_signal", "received", result.value, ip, port)

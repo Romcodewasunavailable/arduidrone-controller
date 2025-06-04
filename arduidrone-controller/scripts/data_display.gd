@@ -2,6 +2,8 @@
 class_name DataDisplay
 extends ConnectedElement
 
+signal updated()
+
 @export var title: String:
 	set(value):
 		title = value
@@ -25,7 +27,7 @@ func update_data():
 		return
 	if data_entry_display == null:
 		data_entry_display = load("res://scenes/data_entry_display.tscn")
-	
+
 	for i in range(keys.size()):
 		var new_data_entry_display: DataEntryDisplay
 		if i < entry_container.get_child_count():
@@ -37,15 +39,18 @@ func update_data():
 		new_data_entry_display.key = keys[i]
 		if i < values.size():
 			new_data_entry_display.value = values[i]
-	
+
 	while entry_container.get_child_count() > keys.size():
 		var child = entry_container.get_child(entry_container.get_child_count() - 1)
 		entry_container.remove_child(child)
 		child.queue_free()
 
+	updated.emit()
+
 
 func _process(_delta):
 	super._process(_delta)
+
 	if keys != last_keys or values != last_values:
 		update_data()
 		last_keys = keys.duplicate()

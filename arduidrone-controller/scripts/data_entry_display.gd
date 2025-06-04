@@ -6,7 +6,7 @@ extends Control
 	set(new_value):
 		key = new_value
 		if key_label != null:
-			key_label.text = new_value
+			key_label.text = new_value.capitalize()
 
 @export var value: Variant = null:
 	set(new_value):

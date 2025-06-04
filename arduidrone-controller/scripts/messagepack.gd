@@ -224,11 +224,9 @@ static func _decode_message(buffer: StreamPeerBuffer, err: Dictionary):
 		return buffer.get_utf8_string(size)
 		
 	elif first_byte == types["nil"]: # nil
-		print("null size:%s"%buffer_size)
 		return null
 		
 	elif first_byte == types["false"]: # false
-		print("false size:%s"%buffer_size)		
 		return false
 		
 	elif first_byte == types["true"]: # true

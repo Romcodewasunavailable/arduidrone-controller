@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cosf6iekhhi8a" path="res://scripts/arduidrone_controller.gd" id="1_2navr"]
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
-[ext_resource type="Texture2D" uid="uid://deb2hg1bg3bx1" path="res://visuals/pc_icon.png" id="2_4dh6d"]
-[ext_resource type="Script" uid="uid://cl6b7qcolyssf" path="res://scripts/drag_resize_box.gd" id="2_7hfh3"]
 [ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
+[ext_resource type="PackedScene" uid="uid://bc0qiumpes0o1" path="res://scenes/pc_icon.tscn" id="2_eyunb"]
 [ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
 [ext_resource type="PackedScene" uid="uid://c7gt7a67m3mao" path="res://scenes/graph_display.tscn" id="4_q5x3l"]
-[ext_resource type="Script" uid="uid://bkibeau1x468k" path="res://scripts/udp_control_panel.gd" id="6_nbbtf"]
+[ext_resource type="PackedScene" uid="uid://ddtvaqys7wmsh" path="res://scenes/udp_control_panel.tscn" id="6_roiwr"]
 [ext_resource type="PackedScene" uid="uid://rw2uy735jv2s" path="res://scenes/terminal.tscn" id="6_uc267"]
 [ext_resource type="Script" uid="uid://wgi8om6k8tga" path="res://scripts/udp_commands.gd" id="7_4dh6d"]
-[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="7_eyunb"]
+[ext_resource type="PackedScene" uid="uid://xqmenq7kceac" path="res://scenes/controller_control_panel.tscn" id="9_i5msw"]
+[ext_resource type="Script" uid="uid://c07o0xqushosv" path="res://scripts/controller_data_display.gd" id="9_roiwr"]
+[ext_resource type="Script" uid="uid://yqf6dlhj48ng" path="res://scripts/controller_graph_display.gd" id="12_i5msw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ue7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -33,9 +34,6 @@ corner_radius_top_right = 37
 corner_radius_bottom_right = 37
 corner_radius_bottom_left = 37
 corner_detail = 16
-
-[sub_resource type="LabelSettings" id="LabelSettings_roiwr"]
-font_size = 30
 
 [node name="ArduidroneController" type="Control"]
 layout_mode = 3
@@ -108,40 +106,14 @@ offset_right = 37.5
 offset_bottom = 37.5
 theme_override_styles/panel = SubResource("StyleBoxFlat_8cf3k")
 
-[node name="PCIcon" type="Control" parent="." node_paths=PackedStringArray("main_control")]
+[node name="PCIcon" parent="." instance=ExtResource("2_eyunb")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -668.0
-offset_top = 147.0
-offset_right = -412.0
-offset_bottom = 403.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_7hfh3")
-resizeable = false
-main_control = NodePath("TextureRect")
-metadata/_custom_type_script = "uid://cl6b7qcolyssf"
-
-[node name="TextureRect" type="TextureRect" parent="PCIcon"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_4dh6d")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="UDPTerminal" parent="PCIcon" instance=ExtResource("6_uc267")]
-offset_left = -194.0
-offset_top = -556.0
-offset_right = 255.0
-offset_bottom = -228.0
+offset_left = -7.0
+offset_top = -119.0
+offset_right = 217.0
+offset_bottom = -14.0
 title = "UDP Terminal"
 command_script = ExtResource("7_4dh6d")
 line_anchor = Vector2(50, 150)
@@ -156,79 +128,53 @@ anchor_bottom = 0.5
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="UDPControlPanel" type="Control" parent="PCIcon/UDPTerminal/Control" node_paths=PackedStringArray("line", "main_control")]
-anchors_preset = 0
-offset_left = 100.0
-offset_top = -89.0
-offset_right = 435.0
-offset_bottom = 47.0
-script = ExtResource("6_nbbtf")
-line = NodePath("Line2D")
-main_control = NodePath("PanelContainer")
-metadata/_custom_type_script = "uid://c7xa78egerg3k"
+[node name="UDPControlPanel" parent="PCIcon/UDPTerminal/Control" instance=ExtResource("6_roiwr")]
 
-[node name="Line2D" type="Line2D" parent="PCIcon/UDPTerminal/Control/UDPControlPanel"]
-points = PackedVector2Array(167.5, 68, -79, 68, -100, 89)
-width = 5.0
-end_cap_mode = 2
+[node name="ControllerDataDisplay" parent="PCIcon" instance=ExtResource("3_8gtqt")]
+offset_left = -15.0
+offset_top = 277.0
+offset_right = 231.0
+offset_bottom = 451.0
+script = ExtResource("9_roiwr")
+title = "Controller Data"
+keys = PackedStringArray("THROTTLE", "YAW", "PITCH", "ROLL")
+line_anchor = Vector2(50, 150)
 
-[node name="PanelContainer" type="PanelContainer" parent="PCIcon/UDPTerminal/Control/UDPControlPanel"]
-layout_mode = 0
-offset_right = 335.0
-offset_bottom = 136.0
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("7_eyunb")
+[node name="Control" type="Control" parent="PCIcon/ControllerDataDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+[node name="ControllerControlPanel" parent="PCIcon/ControllerDataDisplay/Control" instance=ExtResource("9_i5msw")]
+offset_left = 113.0
+offset_top = -236.0
+offset_right = 487.0
+offset_bottom = -37.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer"]
-layout_mode = 2
+[node name="Control2" type="Control" parent="PCIcon/ControllerDataDisplay"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="TitleLabel" type="Label" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-mouse_filter = 1
-text = "UDP Control Panel"
-label_settings = SubResource("LabelSettings_roiwr")
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Destination address"
-
-[node name="DestinationAddressLineEdit" type="LineEdit" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(146, 31)
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_constants/minimum_character_width = 0
-text = "192.168.1.6:12345"
-expand_to_text_length = true
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "Local port"
-
-[node name="LocalPortLineEdit" type="LineEdit" parent="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(55, 31)
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_constants/minimum_character_width = 0
-text = "12345"
+[node name="ControllerGraphDisplay" parent="PCIcon/ControllerDataDisplay/Control2" node_paths=PackedStringArray("controller_data_display") instance=ExtResource("4_q5x3l")]
+offset_left = 146.0
+offset_top = -54.0
+offset_right = 510.0
+offset_bottom = 245.0
+script = ExtResource("12_i5msw")
+controller_data_display = NodePath("../..")
+title = "Controller Graph"
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
 
 [node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
 layout_mode = 1
@@ -237,18 +183,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 47.0
-offset_top = -42.0
-offset_right = 589.0
-offset_bottom = 470.0
+offset_left = 73.0
+offset_top = -29.0
+offset_right = 615.0
+offset_bottom = 483.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = -348.0
-offset_top = 98.0
-offset_right = -108.0
-offset_bottom = 186.0
+offset_left = -265.0
+offset_top = 60.0
+offset_right = -25.0
+offset_bottom = 148.0
 line_anchor = Vector2(59, 62)
 
 [node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
@@ -259,10 +205,10 @@ offset_bottom = 173.0
 line_anchor = Vector2(483, 62)
 
 [node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = -281.0
-offset_top = 437.0
-offset_right = -41.0
-offset_bottom = 525.0
+offset_left = -242.0
+offset_top = 431.0
+offset_right = -2.0
+offset_bottom = 519.0
 line_anchor = Vector2(59, 450)
 
 [node name="RPMDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
@@ -290,14 +236,11 @@ anchor_right = 0.5
 grow_horizontal = 2
 
 [node name="GyroGraphDisplay" parent="DroneModelDisplay/GyroDataDisplay/Control" instance=ExtResource("4_q5x3l")]
-offset_left = 172.5
-offset_top = -229.0
-offset_right = 536.5
-offset_bottom = 93.0
+offset_left = 156.5
+offset_top = -224.0
+offset_right = 520.5
+offset_bottom = 98.0
 title = "Gyro Graph"
 keys = PackedStringArray("sin(t)", "cos(t)")
 values = PackedFloat32Array(0, 0)
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
-
-[connection signal="text_submitted" from="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DestinationAddressLineEdit" to="PCIcon/UDPTerminal/Control/UDPControlPanel" method="_on_destination_address_line_edit_text_submitted"]
-[connection signal="text_submitted" from="PCIcon/UDPTerminal/Control/UDPControlPanel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/LocalPortLineEdit" to="PCIcon/UDPTerminal/Control/UDPControlPanel" method="_on_local_port_line_edit_text_submitted"]

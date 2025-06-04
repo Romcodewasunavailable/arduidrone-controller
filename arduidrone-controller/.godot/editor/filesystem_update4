@@ -6,5 +6,8 @@ res://scenes/rpm_display.tscn
 res://scenes/data_display.tscn
 res://scenes/graph_display.tscn
 res://scenes/terminal.tscn
-res://scripts/controller.gd
-res://scripts/terminal.gd
+res://scenes/controller_control_panel.tscn
+res://scenes/udp_control_panel.tscn
+res://scripts/data_display.gd
+res://scripts/messagepack.gd
+res://scripts/controller_control_panel.gd

@@ -1,19 +1,24 @@
 extends Node
 
-enum {THROTTLE, YAW, PITCH, ROLL}
-enum {TEST}
+signal updated()
+
+enum AXES {THROTTLE, YAW, PITCH, ROLL}
+enum BUTTONS {IDLE_THRUST_UP, IDLE_THRUST_DOWN}
 
 var update_timer: Timer
 
-var precision = 0.0
+var precision = 0.01
 var deadzone = 0.05
 var axis_map = {
-	JOY_AXIS_LEFT_Y: THROTTLE,
-	JOY_AXIS_LEFT_X: YAW,
-	JOY_AXIS_RIGHT_Y: PITCH,
-	JOY_AXIS_RIGHT_X: ROLL,
+	JOY_AXIS_LEFT_Y: AXES.THROTTLE,
+	JOY_AXIS_LEFT_X: AXES.YAW,
+	JOY_AXIS_RIGHT_Y: AXES.PITCH,
+	JOY_AXIS_RIGHT_X: AXES.ROLL,
 }
-var button_map = {JOY_BUTTON_RIGHT_SHOULDER: TEST}
+var button_map = {
+	JOY_BUTTON_DPAD_UP: BUTTONS.IDLE_THRUST_UP,
+	JOY_BUTTON_DPAD_DOWN: BUTTONS.IDLE_THRUST_DOWN,
+}
 var axis_state = []
 var button_state = []
 
@@ -28,6 +33,8 @@ func process_axis(value: float) -> float:
 
 func _on_update_timer_timeout() -> void:
 	UDP.send([axis_state, button_state])
+
+	updated.emit()
 
 
 func _input(event: InputEvent) -> void:
