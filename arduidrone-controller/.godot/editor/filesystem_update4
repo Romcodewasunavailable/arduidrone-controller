@@ -15,3 +15,7 @@ res://scripts/udp_client.gd
 res://scripts/udp.gd
 res://scripts/controller.gd
 res://scripts/controller_control_panel.gd
+res://scripts/rpm_display.gd
+res://scripts/gyro_data_display.gd
+res://scripts/controller_data_display.gd
+res://scripts/controller_graph_display.gd

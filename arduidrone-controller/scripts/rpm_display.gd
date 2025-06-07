@@ -2,6 +2,7 @@
 class_name RpmDisplay
 extends ConnectedElement
 
+@export var propeller: int
 @export var max_rpm: float:
 	set(value):
 		max_rpm = value
@@ -23,4 +24,15 @@ func update_display():
 
 	texture_progress_bar.value = rpm / max_rpm
 	texture_progress_bar.tint_progress = rpm_gradient.sample(texture_progress_bar.value)
-	label.text = str(roundi(rpm)) + " RPM"
+	label.text = "%d RPM" % roundi(rpm)
+
+
+func _on_udp_received(object: Variant, ip: String, port: int) -> void:
+	rpm = object[0][propeller]
+
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+
+	UDP.connect("received", _on_udp_received)

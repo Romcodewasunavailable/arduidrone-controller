@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://v52yrc83mh5o"]
+[gd_scene load_steps=16 format=3 uid="uid://v52yrc83mh5o"]
 
 [ext_resource type="Script" uid="uid://cosf6iekhhi8a" path="res://scripts/arduidrone_controller.gd" id="1_2navr"]
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://xqmenq7kceac" path="res://scenes/controller_control_panel.tscn" id="9_i5msw"]
 [ext_resource type="Script" uid="uid://c07o0xqushosv" path="res://scripts/controller_data_display.gd" id="9_roiwr"]
 [ext_resource type="Script" uid="uid://yqf6dlhj48ng" path="res://scripts/controller_graph_display.gd" id="12_i5msw"]
+[ext_resource type="Script" uid="uid://0f0saemnuqbn" path="res://scripts/gyro_data_display.gd" id="13_roiwr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ue7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -210,6 +211,7 @@ offset_left = 538.0
 offset_top = -16.0
 offset_right = 778.0
 offset_bottom = 72.0
+propeller = 1
 line_anchor = Vector2(483, 62)
 
 [node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
@@ -217,6 +219,7 @@ offset_left = -242.0
 offset_top = 431.0
 offset_right = -2.0
 offset_bottom = 519.0
+propeller = 2
 line_anchor = Vector2(59, 450)
 
 [node name="RPMDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
@@ -224,13 +227,15 @@ offset_left = 538.0
 offset_top = 429.0
 offset_right = 778.0
 offset_bottom = 517.0
+propeller = 3
 line_anchor = Vector2(483, 450)
 
 [node name="GyroDataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
-offset_left = 168.0
+offset_left = 167.0
 offset_top = -140.0
-offset_right = 337.0
+offset_right = 336.0
 offset_bottom = 7.0
+script = ExtResource("13_roiwr")
 title = "Gyro Data"
 keys = PackedStringArray("Yaw", "Pitch", "Roll")
 values = [0.0, 0.0, 0.0]

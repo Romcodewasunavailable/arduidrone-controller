@@ -16,6 +16,7 @@ offset_bottom = 88.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_6c0va")
+propeller = null
 max_rpm = 10000.0
 rpm = 3750.0
 rpm_gradient = ExtResource("2_uq4b5")
