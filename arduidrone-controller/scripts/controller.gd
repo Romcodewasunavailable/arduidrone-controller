@@ -5,10 +5,19 @@ signal updated()
 enum AXES {THROTTLE, YAW, PITCH, ROLL}
 enum BUTTONS {IDLE_THRUST_UP, IDLE_THRUST_DOWN}
 
+const AXIS_PAIRS = {
+	JOY_AXIS_LEFT_Y: JOY_AXIS_LEFT_X,
+	JOY_AXIS_LEFT_X: JOY_AXIS_LEFT_Y,
+	JOY_AXIS_RIGHT_Y: JOY_AXIS_RIGHT_X,
+	JOY_AXIS_RIGHT_X: JOY_AXIS_RIGHT_Y,
+}
+
 var update_timer: Timer
 
 var precision = 0.01
 var deadzone = 0.05
+var send_udp = true
+
 var axis_map = {
 	JOY_AXIS_LEFT_Y: AXES.THROTTLE,
 	JOY_AXIS_LEFT_X: AXES.YAW,
@@ -23,24 +32,36 @@ var axis_state = []
 var button_state = []
 
 
+func set_precision(step_value: float) -> void:
+	precision = step_value
+
+
+func set_deadzone(min_value: float) -> void:
+	deadzone = min_value
+
+
+func set_send_udp(toggled_on: bool) -> void:
+	send_udp = toggled_on
+
+
 func set_poll_rate(rate_hz: float) -> void:
 	update_timer.wait_time = 1.0 / rate_hz
 
 
-func process_axis(value: float) -> float:
+func process_axis(axis: int, value: float) -> float:
 	return snapped(value, precision) if abs(value) > deadzone else 0.0
 
 
 func _on_update_timer_timeout() -> void:
-	UDP.send([axis_state, button_state])
-
+	if send_udp:
+		UDP.send([axis_state, button_state])
 	updated.emit()
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadMotion:
 		if axis_map.has(event.axis):
-			axis_state[axis_map[event.axis]] = process_axis(event.axis_value)
+			axis_state[axis_map[event.axis]] = process_axis(event.axis, event.axis_value)
 	elif event is InputEventJoypadButton:
 		if button_map.has(event.button_index):
 			button_state[button_map[event.button_index]] = event.pressed

@@ -7,6 +7,7 @@ signal received(object: Variant, ip: String, port: int)
 var _poll_delay_msec := 10
 var _dest_ip := ""
 var _dest_port := 0
+var _output_traffic := false
 
 var _udp := PacketPeerUDP.new()
 var _thread := Thread.new()
@@ -15,6 +16,7 @@ var _thread_running := false
 
 func set_poll_rate(rate_hz: float) -> void:
 	_poll_delay_msec = roundi(1000.0 / rate_hz)
+	print(_poll_delay_msec)
 
 
 func set_dest_address(ip: String = "", port: int = 0) -> void:
@@ -32,8 +34,13 @@ func set_dest_address(ip: String = "", port: int = 0) -> void:
 	_dest_port = port
 
 
+func set_output_traffic(toggled_on: bool) -> void:
+	_output_traffic = toggled_on
+
+
 func send(object: Variant) -> void:
-	system_output.emit("Sending: %s" % str(object))
+	if _output_traffic:
+		system_output.emit("Sending: %s" % str(object))
 	if _dest_ip == "" or _dest_port == 0:
 		system_output.emit("Destination address not set")
 		return
@@ -79,5 +86,7 @@ func _listener_loop() -> void:
 			if result.status != OK:
 				call_deferred("emit_signal", "system_output", "Failed to decode messagepack: %s" % error_string(result.status))
 			else:
+				if _output_traffic:
+					call_deferred("emit_signal", "system_output", "Received: %s" % str(result.value))
 				call_deferred("emit_signal", "received", result.value, ip, port)
 		OS.delay_msec(_poll_delay_msec)

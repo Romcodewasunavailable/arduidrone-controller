@@ -8,6 +8,10 @@ res://scenes/graph_display.tscn
 res://scenes/terminal.tscn
 res://scenes/controller_control_panel.tscn
 res://scenes/udp_control_panel.tscn
-res://scripts/data_display.gd
-res://scripts/messagepack.gd
+res://scripts/arduino.cs
+res://scripts/udp_control_panel.gd
+res://scripts/udp_commands.gd
+res://scripts/udp_client.gd
+res://scripts/udp.gd
+res://scripts/controller.gd
 res://scripts/controller_control_panel.gd

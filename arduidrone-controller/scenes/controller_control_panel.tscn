@@ -26,7 +26,7 @@ end_cap_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 374.0
-offset_bottom = 171.0
+offset_bottom = 199.0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_ufra8")
 
@@ -108,10 +108,11 @@ layout_mode = 2
 size_flags_horizontal = 2
 text = "Send UDP"
 
-[node name="SendCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="SendUDPCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+button_pressed = true
 
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PrecisionLineEdit" to="." method="_on_precision_line_edit_text_submitted"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/DeadzoneLineEdit" to="." method="_on_deadzone_line_edit_text_submitted"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/PollRateLineEdit" to="." method="_on_poll_rate_line_edit_text_submitted"]
-[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/SendCheckButton" to="." method="_on_send_check_button_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/SendUDPCheckButton" to="." method="_on_send_udp_check_button_toggled"]

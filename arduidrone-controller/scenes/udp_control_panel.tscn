@@ -11,15 +11,15 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 116.0
 offset_top = -61.5
-offset_right = 451.0
-offset_bottom = 144.5
+offset_right = 469.0
+offset_bottom = 172.5
 script = ExtResource("1_0a785")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(167.5, 103, -74.5, 103, -116, 61.5)
+points = PackedVector2Array(176.5, 117, -60.5, 117, -116, 61.5)
 width = 5.0
 end_cap_mode = 2
 
@@ -62,7 +62,7 @@ custom_minimum_size = Vector2(146, 31)
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/minimum_character_width = 0
-text = "192.168.1.6:12345"
+text = "192.168.8.181:12345"
 expand_to_text_length = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -99,6 +99,18 @@ theme_override_constants/minimum_character_width = 0
 text = "60"
 expand_to_text_length = true
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Output traffic"
+
+[node name="OutputTrafficCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
 [node name="PingButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -106,3 +118,6 @@ text = "Ping"
 
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DestinationAddressLineEdit" to="." method="_on_destination_address_line_edit_text_submitted"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/LocalPortLineEdit" to="." method="_on_local_port_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/PollRateLineEdit" to="." method="_on_poll_rate_line_edit_text_submitted"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/OutputTrafficCheckButton" to="." method="_on_output_traffic_check_button_toggled"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/PingButton" to="." method="_on_ping_button_pressed"]
