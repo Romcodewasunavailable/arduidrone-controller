@@ -2,15 +2,9 @@ extends Node
 
 signal updated()
 
-enum AXES {THROTTLE, YAW, PITCH, ROLL}
-enum BUTTONS {IDLE_THRUST_UP, IDLE_THRUST_DOWN}
+enum AXES {THROTTLE, YAW, PITCH, ROLL, PITCH_P, PITCH_I, PITCH_D}
+enum BUTTONS {TOGGLE_ARM}
 
-const AXIS_PAIRS = {
-	JOY_AXIS_LEFT_Y: JOY_AXIS_LEFT_X,
-	JOY_AXIS_LEFT_X: JOY_AXIS_LEFT_Y,
-	JOY_AXIS_RIGHT_Y: JOY_AXIS_RIGHT_X,
-	JOY_AXIS_RIGHT_X: JOY_AXIS_RIGHT_Y,
-}
 const AXIS_MAP = {
 	JOY_AXIS_LEFT_Y: AXES.THROTTLE,
 	JOY_AXIS_LEFT_X: AXES.YAW,
@@ -18,8 +12,7 @@ const AXIS_MAP = {
 	JOY_AXIS_RIGHT_X: AXES.ROLL,
 }
 const BUTTON_MAP = {
-	JOY_BUTTON_DPAD_UP: BUTTONS.IDLE_THRUST_UP,
-	JOY_BUTTON_DPAD_DOWN: BUTTONS.IDLE_THRUST_DOWN,
+	JOY_BUTTON_START: BUTTONS.TOGGLE_ARM,
 }
 
 var update_timer: Timer
@@ -68,9 +61,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	axis_state.resize(AXIS_MAP.size())
+	axis_state.resize(AXES.size())
 	axis_state.fill(0.0)
-	button_state.resize(BUTTON_MAP.size())
+	button_state.resize(BUTTONS.size())
 	button_state.fill(false)
 
 	update_timer = Timer.new()

@@ -12,14 +12,14 @@ anchors_preset = 0
 offset_left = 122.0
 offset_top = -150.0
 offset_right = 496.0
-offset_bottom = 49.0
+offset_bottom = 154.0
 script = ExtResource("1_vgjfy")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(187, 99.5, -71.5, 99.5, -122, 150)
+points = PackedVector2Array(187, 152, -120, 152, -122, 150)
 width = 5.0
 end_cap_mode = 2
 
@@ -112,7 +112,61 @@ text = "Send UDP"
 layout_mode = 2
 button_pressed = true
 
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Pitch P"
+
+[node name="PitchPLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(19, 31)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/minimum_character_width = 0
+text = "0"
+expand_to_text_length = true
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Pitch I"
+
+[node name="PitchILineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(19, 31)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/minimum_character_width = 0
+text = "0"
+expand_to_text_length = true
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Pitch D"
+
+[node name="PitchDLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(19, 31)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/minimum_character_width = 0
+text = "0"
+expand_to_text_length = true
+
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PrecisionLineEdit" to="." method="_on_precision_line_edit_text_submitted"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/DeadzoneLineEdit" to="." method="_on_deadzone_line_edit_text_submitted"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/PollRateLineEdit" to="." method="_on_poll_rate_line_edit_text_submitted"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/SendUDPCheckButton" to="." method="_on_send_udp_check_button_toggled"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/PitchPLineEdit" to="." method="_on_pitch_p_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6/PitchILineEdit" to="." method="_on_pitch_i_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7/PitchDLineEdit" to="." method="_on_pitch_d_line_edit_text_submitted"]

@@ -5,7 +5,8 @@ enum AXES {YAW, PITCH, ROLL}
 
 
 func _on_udp_received(object: Variant, ip: String, port: int) -> void:
-	values = object[1]
+	#values = object[1]
+	pass
 
 
 func _ready() -> void:

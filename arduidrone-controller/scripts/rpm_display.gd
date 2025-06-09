@@ -28,7 +28,8 @@ func update_display():
 
 
 func _on_udp_received(object: Variant, ip: String, port: int) -> void:
-	rpm = object[0][propeller]
+	#rpm = object[0][propeller]
+	pass
 
 
 func _ready() -> void:

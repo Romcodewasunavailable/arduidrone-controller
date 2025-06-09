@@ -1,5 +1,9 @@
 extends Node
 
+const DEFAULT_DEST_IP = "192.168.50.69"
+const DEFAULT_DEST_PORT = 12345
+const DEFAULT_LOCAL_PORT = 12345
+
 const PING_AMOUNT = 10
 const PING_INTERVAL_MSEC = 500
 
@@ -85,5 +89,5 @@ func _ready() -> void:
 	_ping_latencies.resize(PING_AMOUNT)
 	_udp_client.connect("system_output", _on_udp_client_system_output)
 	_udp_client.connect("received", _on_udp_client_received)
-	_udp_client.call_deferred("listen", 12345)
-	_udp_client.call_deferred("set_dest_address", "192.168.8.181", 12345)
+	_udp_client.call_deferred("listen", DEFAULT_LOCAL_PORT)
+	_udp_client.call_deferred("set_dest_address", DEFAULT_DEST_IP, DEFAULT_DEST_PORT)

@@ -25,8 +25,8 @@ end_cap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 335.0
-offset_bottom = 206.0
+offset_right = 353.0
+offset_bottom = 234.0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_86wff")
 
@@ -62,7 +62,7 @@ custom_minimum_size = Vector2(146, 31)
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/minimum_character_width = 0
-text = "192.168.8.181:12345"
+text = "192.168.50.69:12345"
 expand_to_text_length = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]

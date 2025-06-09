@@ -204,6 +204,7 @@ offset_left = -242.0
 offset_top = 58.0
 offset_right = -2.0
 offset_bottom = 146.0
+propeller = 0
 line_anchor = Vector2(59, 62)
 
 [node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
