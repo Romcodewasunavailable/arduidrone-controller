@@ -9,8 +9,3 @@ res://scenes/terminal.tscn
 res://scenes/controller_control_panel.tscn
 res://scenes/udp_control_panel.tscn
 res://scripts/arduino.cs
-res://scripts/udp.gd
-res://scripts/rpm_display.gd
-res://scripts/gyro_data_display.gd
-res://scripts/controller.gd
-res://scripts/controller_control_panel.gd
