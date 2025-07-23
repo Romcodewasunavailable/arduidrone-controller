@@ -17,6 +17,7 @@ title = "Graph Title"
 keys = PackedStringArray()
 values = PackedFloat32Array()
 colors = PackedColorArray()
+max_points = null
 title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
 label_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/LabelContainer")
 graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl")

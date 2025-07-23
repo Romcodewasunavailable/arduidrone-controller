@@ -62,13 +62,19 @@ func _ping_loop() -> void:
 
 
 func _process_pings() -> void:
+	print(_ping_latencies)
 	var total_received = 0
 	var total_latency = 0
 	for latency in _ping_latencies:
-		if latency != null:
-			total_received += 1
-			total_latency += latency
-	system_output.emit("%d/%d pings returned, average latency: %d ms" % [total_received, PING_AMOUNT, total_latency / total_received])
+		if latency == null or latency == 0:
+			continue
+		total_received += 1
+		total_latency += latency
+	if total_received == 0:
+		system_output.emit("%d/%d pings returned" % [total_received, PING_AMOUNT])
+	else:
+		@warning_ignore("integer_division")
+		system_output.emit("%d/%d pings returned, average latency: %d ms" % [total_received, PING_AMOUNT, total_latency / total_received])
 
 
 func _on_udp_client_system_output(message: String) -> void:

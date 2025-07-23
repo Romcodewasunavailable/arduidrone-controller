@@ -21,6 +21,7 @@ extends ConnectedElement
 @export var graph_origin := Vector2(0.0, 100.0)
 @export var graph_scale := Vector2(50.0, 50.0)
 
+@export var max_points := 8192
 @export var max_axis_label_density := 3.0
 @export var follow := true
 @export var grid_color := Color(0.2, 0.2, 0.2)
@@ -143,6 +144,8 @@ func update_graph_lines() -> void:
 
 		if i < values.size():
 			points.append(Vector2(time, -values[i]))
+		if points.size() > max_points:
+			points = points.slice(points.size() - max_points)
 
 		var graph_line: Line2D
 		if i < line_control.get_child_count():

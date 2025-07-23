@@ -3,10 +3,21 @@ class_name DragResizeBox
 
 const RESIZE_MARGIN := 10
 
-enum Mode { NONE, DRAG, RESIZE }
+enum Mode {
+	NONE,
+	DRAG,
+	RESIZE,
+}
 enum ResizeEdge {
-	NONE, LEFT, RIGHT, TOP, BOTTOM,
-	TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT
+	NONE,
+	LEFT,
+	RIGHT,
+	TOP,
+	BOTTOM,
+	TOP_LEFT,
+	TOP_RIGHT,
+	BOTTOM_LEFT,
+	BOTTOM_RIGHT,
 }
 
 @export var resizeable := true

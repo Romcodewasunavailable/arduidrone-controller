@@ -9,3 +9,7 @@ res://scenes/terminal.tscn
 res://scenes/controller_control_panel.tscn
 res://scenes/udp_control_panel.tscn
 res://scripts/arduino.cs
+res://scripts/udp.gd
+res://scripts/drag_resize_box.gd
+res://scripts/graph_display.gd
+res://scripts/data_display.gd
