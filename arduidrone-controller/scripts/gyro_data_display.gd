@@ -1,17 +1,16 @@
 @tool
 extends DataDisplay
 
-enum AXES {YAW, PITCH, ROLL}
 
-
-func _on_udp_received(object: Variant, ip: String, port: int) -> void:
+func _on_drone_state_updated() -> void:
 	#values = object[1]
 	pass
 
 
 func _ready() -> void:
+	super._ready()
 	if Engine.is_editor_hint():
 		return
 
-	keys = AXES.keys()
-	UDP.connect("received", _on_udp_received)
+	keys = Drone.Axis.keys().slice(4)
+	Drone.state_updated.connect(_on_drone_state_updated)

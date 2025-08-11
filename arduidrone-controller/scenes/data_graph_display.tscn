@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf8iu4oxarr2h"]
+
+[ext_resource type="PackedScene" uid="uid://c7gt7a67m3mao" path="res://scenes/graph_display.tscn" id="1_mfqu4"]
+[ext_resource type="Script" uid="uid://c75lpm0bju8ag" path="res://scripts/data_graph_display.gd" id="2_p38fb"]
+
+[node name="DataGraphDisplay" instance=ExtResource("1_mfqu4")]
+script = ExtResource("2_p38fb")

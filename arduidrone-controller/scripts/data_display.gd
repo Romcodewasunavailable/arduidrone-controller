@@ -1,41 +1,36 @@
 @tool
 class_name DataDisplay
-extends ConnectedElement
+extends TitledConnectedElement
 
-signal updated()
+signal data_updated()
 
-@export var title: String:
+const DATA_ENTRY_DISPLAY = preload("res://scenes/data_entry_display.tscn")
+
+@export var keys: PackedStringArray:
 	set(value):
-		title = value
-		if title_label != null:
-			title_label.text = value
+		keys = value
+		if is_node_ready():
+			update_data_entry_displays()
+			data_updated.emit()
+@export var values: Array[Variant]:
+	set(value):
+		values = value
+		if is_node_ready():
+			update_data_entry_displays()
+			data_updated.emit()
 
-@export var keys: PackedStringArray
-@export var values: Array[Variant]
-
-@export var title_label: Label
 @export var entry_container: Container
 
-var data_entry_display = preload("res://scenes/data_entry_display.tscn")
 
-var last_keys: PackedStringArray
-var last_values: Array[Variant]
-
-
-func update_data():
-	if entry_container == null:
-		return
-	if data_entry_display == null:
-		data_entry_display = load("res://scenes/data_entry_display.tscn")
-
+func update_data_entry_displays() -> void:
 	for i in range(keys.size()):
 		var new_data_entry_display: DataEntryDisplay
 		if i < entry_container.get_child_count():
 			new_data_entry_display = entry_container.get_child(i)
 		else:
-			new_data_entry_display = data_entry_display.instantiate()
+			new_data_entry_display = DATA_ENTRY_DISPLAY.instantiate()
 			entry_container.add_child(new_data_entry_display)
-		
+
 		new_data_entry_display.key = keys[i]
 		if i < values.size():
 			new_data_entry_display.value = values[i]
@@ -45,13 +40,8 @@ func update_data():
 		entry_container.remove_child(child)
 		child.queue_free()
 
-	updated.emit()
 
-
-func _process(_delta):
-	super._process(_delta)
-
-	if keys != last_keys or values != last_values:
-		update_data()
-		last_keys = keys.duplicate()
-		last_values = values.duplicate()
+func _ready() -> void:
+	super._ready()
+	update_data_entry_displays()
+	data_updated.emit()

@@ -5,7 +5,8 @@ extends DragResizeBox
 @export var line_anchor: Vector2:
 	set(value):
 		line_anchor = value
-		update_line()
+		if is_node_ready():
+			update_line()
 
 @export var line: Line2D
 
@@ -15,9 +16,6 @@ var last_container_size: Vector2
 
 
 func update_line():
-	if line == null:
-		return
-	
 	var center = size / 2.0
 	var end = line_anchor - position
 	
@@ -33,6 +31,10 @@ func update_line():
 	line.set_point_position(0, center)
 	line.set_point_position(1, mid)
 	line.set_point_position(2, end)
+
+
+func _ready() -> void:
+	update_line()
 
 
 func _process(_delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddtvaqys7wmsh"]
+[gd_scene load_steps=8 format=3 uid="uid://ddtvaqys7wmsh"]
 
 [ext_resource type="Script" uid="uid://bkibeau1x468k" path="res://scripts/udp_control_panel.gd" id="1_0a785"]
 [ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="2_86wff"]
@@ -6,20 +6,27 @@
 [sub_resource type="LabelSettings" id="LabelSettings_roiwr"]
 font_size = 30
 
-[node name="UDPControlPanel" type="Control" node_paths=PackedStringArray("line", "main_control")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0a785"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86wff"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8tf5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n5qqo"]
+
+[node name="UDPControlPanel" type="Control" node_paths=PackedStringArray("local_ip_label", "line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 116.0
-offset_top = -61.5
-offset_right = 469.0
-offset_bottom = 172.5
+offset_right = 353.0
+offset_bottom = 234.0
 script = ExtResource("1_0a785")
+local_ip_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/LocalIPLabel")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(176.5, 117, -60.5, 117, -116, 61.5)
+points = PackedVector2Array(176.5, 117, 117, 117, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
@@ -61,6 +68,7 @@ text = "Destination address"
 custom_minimum_size = Vector2(146, 31)
 layout_mode = 2
 size_flags_horizontal = 10
+size_flags_vertical = 4
 theme_override_constants/minimum_character_width = 0
 text = "192.168.50.69:12345"
 expand_to_text_length = true
@@ -72,12 +80,36 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Local port"
+text = "Local address"
 
-[node name="LocalPortLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="LocalIPLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxEmpty_0a785")
+theme_override_styles/background = SubResource("StyleBoxEmpty_86wff")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l8tf5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n5qqo")
+text = "192.168.1.1:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+selection_enabled = true
+
+[node name="LocalPortLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(55, 31)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
+size_flags_vertical = 4
 theme_override_constants/minimum_character_width = 0
 text = "12345"
 expand_to_text_length = true
@@ -110,14 +142,17 @@ text = "Output traffic"
 
 [node name="OutputTrafficCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
 
 [node name="PingButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 4
 text = "Ping"
 
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DestinationAddressLineEdit" to="." method="_on_destination_address_line_edit_text_submitted"]
-[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/LocalPortLineEdit" to="." method="_on_local_port_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/LocalPortLineEdit" to="." method="_on_local_port_line_edit_text_submitted"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/PollRateLineEdit" to="." method="_on_poll_rate_line_edit_text_submitted"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/OutputTrafficCheckButton" to="." method="_on_output_traffic_check_button_toggled"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/PingButton" to="." method="_on_ping_button_pressed"]

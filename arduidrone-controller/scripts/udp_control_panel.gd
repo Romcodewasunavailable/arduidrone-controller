@@ -1,6 +1,8 @@
 @tool
 extends ConnectedElement
 
+@export var local_ip_label: RichTextLabel
+
 
 func _on_destination_address_line_edit_text_submitted(new_text: String) -> void:
 	var new_adress = new_text.split(":")
@@ -22,3 +24,9 @@ func _on_output_traffic_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_ping_button_pressed() -> void:
 	UDP.ping()
+
+
+func _ready() -> void:
+	var environment = "COMPUTERNAME" if OS.has_feature("windows") else "HOSTNAME"
+	var local_ip = IP.resolve_hostname(str(OS.get_environment(environment)), IP.TYPE_IPV4)
+	local_ip_label.text = local_ip + ":"

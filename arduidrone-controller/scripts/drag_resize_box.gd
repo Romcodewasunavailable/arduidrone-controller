@@ -1,8 +1,6 @@
 extends Control
 class_name DragResizeBox
 
-const RESIZE_MARGIN := 10
-
 enum Mode {
 	NONE,
 	DRAG,
@@ -19,6 +17,8 @@ enum ResizeEdge {
 	BOTTOM_LEFT,
 	BOTTOM_RIGHT,
 }
+
+const RESIZE_MARGIN := 10
 
 @export var resizeable := true
 @export var main_control: Control

@@ -1,33 +1,36 @@
 @tool
 class_name GraphDisplay
-extends ConnectedElement
+extends TitledConnectedElement
 
-@export var title: String:
+const LINE_LABEL = preload("res://scenes/line_label.tscn")
+
+@export var keys := PackedStringArray():
 	set(value):
-		title = value
-		if title_label != null:
-			title_label.text = value
-
-@export var keys := PackedStringArray()
+		keys = value
+		if is_node_ready():
+			update_labels()
+@export var colors := PackedColorArray():
+	set(value):
+		colors = value
+		if is_node_ready():
+			update_labels()
 @export var values := PackedFloat32Array()
-@export var colors := PackedColorArray()
 
-@export var update_hz := 60.0:
+@export var update_hz := 20.0:
 	set(value):
 		update_hz = value
-		if update_timer != null and value != 0.0:
+		if is_node_ready() and value != 0.0:
 			update_timer.wait_time = 1.0 / value
 
 @export var graph_origin := Vector2(0.0, 100.0)
 @export var graph_scale := Vector2(50.0, 50.0)
 
-@export var max_points := 8192
+@export var max_points := 2048
 @export var max_axis_label_density := 3.0
 @export var follow := true
 @export var grid_color := Color(0.2, 0.2, 0.2)
 @export var zero_color := Color.WHITE
 
-@export var title_label: Label
 @export var label_container: Container
 @export var graph_control: Control
 @export var grid_control: Control
@@ -43,7 +46,6 @@ var graph_size: Vector2:
 	get():
 		return graph_control.size
 
-var line_label = preload("res://scenes/line_label.tscn")
 var point_arrays: Array[PackedVector2Array] = []
 
 var last_keys: PackedStringArray
@@ -69,17 +71,12 @@ func compute_step(_scale: float, _size: float) -> float:
 
 
 func update_labels():
-	if label_container == null:
-		return
-	if line_label == null:
-		line_label = load("res://scenes/line_label.tscn")
-
 	for i in range(keys.size()):
 		var new_line_label: LineLabel
 		if i < label_container.get_child_count():
 			new_line_label = label_container.get_child(i)
 		else:
-			new_line_label = line_label.instantiate()
+			new_line_label = LINE_LABEL.instantiate()
 			label_container.add_child(new_line_label)
 
 		new_line_label.text = keys[i].capitalize()
@@ -164,12 +161,12 @@ func update_graph_lines() -> void:
 		graph_line.clear_points()
 		for point in points:
 			var graph_point = graph_origin + point * graph_scale
-			if not graph_point.x <= graph_size.x: break
-			elif (
-				not graph_point.x >= 0 
-				or not graph_point.y >= 0 
-				or not graph_point.y <= graph_size.y
-			): continue
+			if graph_point.x > graph_size.x:
+				break
+			elif (graph_point.x < 0 
+			or graph_point.y < 0 
+			or graph_point.y > graph_size.y):
+				continue
 
 			graph_line.add_point(graph_point)
 
@@ -221,7 +218,7 @@ func _on_graph_control_gui_input(event: InputEvent) -> void:
 
 
 func _on_update_timer_timeout() -> void:
-	if graph_control == null or grid_control == null or line_control == null:
+	if not is_node_ready():
 		return
 
 	if follow:
@@ -231,10 +228,6 @@ func _on_update_timer_timeout() -> void:
 	update_graph_lines()
 
 
-func _process(_delta: float) -> void:
-	super._process(_delta)
-
-	if keys != last_keys or colors != last_colors:
-		update_labels()
-		last_keys = keys.duplicate()
-		last_colors = colors.duplicate()
+func _ready() -> void:
+	super._ready()
+	update_labels()

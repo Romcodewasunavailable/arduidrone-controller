@@ -1,6 +1,4 @@
-extends RefCounted
-
-signal output(message: String)
+extends Commands
 
 
 func set_poll_rate(rate_hz: float) -> void:
@@ -36,8 +34,4 @@ func _on_udp_system_output(message: String) -> void:
 
 
 func _ready() -> void:
-	UDP.connect("system_output", _on_udp_system_output)
-
-
-func _process(_delta: float) -> void:
-	pass
+	UDP.system_output.connect(_on_udp_system_output)

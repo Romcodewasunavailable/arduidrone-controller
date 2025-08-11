@@ -9,17 +9,15 @@ font_size = 30
 [node name="ControllerControlPanel" type="Control" node_paths=PackedStringArray("line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 122.0
-offset_top = -150.0
-offset_right = 496.0
-offset_bottom = 154.0
+offset_right = 374.0
+offset_bottom = 304.0
 script = ExtResource("1_vgjfy")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(187, 152, -120, 152, -122, 150)
+points = PackedVector2Array(187, 152, 152, 152, 0, 0)
 width = 5.0
 end_cap_mode = 2
 

@@ -15,8 +15,8 @@ var _thread_running := false
 
 
 func set_poll_rate(rate_hz: float) -> void:
+	system_output.emit("Setting poll rate to %d Hz" % rate_hz)
 	_poll_delay_msec = roundi(1000.0 / rate_hz)
-	print(_poll_delay_msec)
 
 
 func set_dest_address(ip: String = "", port: int = 0) -> void:

@@ -1,38 +1,37 @@
 @tool
 class_name Terminal
-extends ConnectedElement
+extends TitledConnectedElement
 
-@export var title: String:
+@export var entries := PackedStringArray():
 	set(value):
-		title = value
-		if title_label != null:
-			title_label.text = value
-
-@export var entries := PackedStringArray()
+		entries = value
+		if is_node_ready():
+			update_terminal_label()
+			update_scroll()
 
 @export var max_entries := 200
 @export var follow := true
 @export var command_script: Script
 
-@export var title_label: Label
 @export var scroll_container: ScrollContainer
 @export var scrolled_container: Container
 @export var terminal_label: RichTextLabel
 @export var button_margin_container: MarginContainer
 @export var command_line_edit: LineEdit
 
-var commands: RefCounted
+var commands: Commands
 
 var last_scroll_size: Vector2
 var last_scrolled_size: Vector2
 var last_scrolled_position: Vector2
-var last_entries: PackedStringArray
 
 
 func add_entry(entry: String) -> void:
 	entries.append(entry)
 	if entries.size() > max_entries:
 		entries.remove_at(0)
+	update_terminal_label()
+	update_scroll()
 
 
 func update_terminal_label() -> void:
@@ -84,25 +83,22 @@ func _on_command_line_edit_text_submitted(command: String) -> void:
 
 
 func _ready() -> void:
+	super._ready()
 	if Engine.is_editor_hint():
 		return
 
+	update_terminal_label()
+	update_scroll()
 	if command_script != null:
 		commands = command_script.new()
-		commands.connect("output", _on_command_output)
+		commands.output.connect(_on_command_output)
 		commands._ready()
 
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
-
 	if not Engine.is_editor_hint():
 		commands._process(_delta)
-
-	if entries != last_entries:
-		update_terminal_label()
-		update_scroll()
-		last_entries = entries.duplicate()
 
 	if (
 		scroll_container.size != last_scroll_size

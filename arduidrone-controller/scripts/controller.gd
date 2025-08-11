@@ -1,18 +1,28 @@
 extends Node
 
-signal updated()
+signal state_updated()
 
-enum AXES {THROTTLE, YAW, PITCH, ROLL, PITCH_P, PITCH_I, PITCH_D}
-enum BUTTONS {TOGGLE_ARM}
+enum Axis {
+	THROTTLE,
+	YAW,
+	PITCH,
+	ROLL,
+	PITCH_P,
+	PITCH_I,
+	PITCH_D,
+}
+enum Flag {
+	TOGGLE_ARM,
+}
 
 const AXIS_MAP = {
-	JOY_AXIS_LEFT_Y: AXES.THROTTLE,
-	JOY_AXIS_LEFT_X: AXES.YAW,
-	JOY_AXIS_RIGHT_Y: AXES.PITCH,
-	JOY_AXIS_RIGHT_X: AXES.ROLL,
+	JOY_AXIS_LEFT_Y: Axis.THROTTLE,
+	JOY_AXIS_LEFT_X: Axis.YAW,
+	JOY_AXIS_RIGHT_Y: Axis.PITCH,
+	JOY_AXIS_RIGHT_X: Axis.ROLL,
 }
-const BUTTON_MAP = {
-	JOY_BUTTON_START: BUTTONS.TOGGLE_ARM,
+const FLAG_MAP = {
+	JOY_BUTTON_START: Flag.TOGGLE_ARM,
 }
 
 var update_timer: Timer
@@ -22,7 +32,7 @@ var deadzone = 0.05
 var send_udp = true
 
 var axis_state = []
-var button_state = []
+var flag_state = []
 
 
 func set_precision(step_value: float) -> void:
@@ -47,8 +57,8 @@ func process_axis(value: float) -> float:
 
 func _on_update_timer_timeout() -> void:
 	if send_udp:
-		UDP.send([axis_state, button_state])
-	updated.emit()
+		UDP.send([axis_state, flag_state])
+	state_updated.emit()
 
 
 func _input(event: InputEvent) -> void:
@@ -56,18 +66,19 @@ func _input(event: InputEvent) -> void:
 		if AXIS_MAP.has(event.axis):
 			axis_state[AXIS_MAP[event.axis]] = process_axis(event.axis_value)
 	elif event is InputEventJoypadButton:
-		if BUTTON_MAP.has(event.button_index):
-			button_state[BUTTON_MAP[event.button_index]] = event.pressed
+		if FLAG_MAP.has(event.button_index):
+			flag_state[FLAG_MAP[event.button_index]] = event.pressed
 
 
 func _ready() -> void:
-	axis_state.resize(AXES.size())
+	axis_state.resize(Axis.size())
 	axis_state.fill(0.0)
-	button_state.resize(BUTTONS.size())
-	button_state.fill(false)
+	flag_state.resize(Flag.size())
+	flag_state.fill(false)
+	state_updated.emit()
 
 	update_timer = Timer.new()
 	update_timer.wait_time = 1.0 / 60.0
-	update_timer.connect("timeout", _on_update_timer_timeout)
+	update_timer.timeout.connect(_on_update_timer_timeout)
 	add_child(update_timer)
 	update_timer.start()

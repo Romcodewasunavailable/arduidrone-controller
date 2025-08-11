@@ -1,10 +1,11 @@
+RichTextLabel
+HBoxContainer
 CheckButton
 Control
 Button
 HSlider
 ConnectedElement
 Label
-HBoxContainer
 LineEdit
 MarginContainer
 VBoxContainer
@@ -12,4 +13,3 @@ DragResizeBox
 TextureRect
 ScrollContainer
 PanelContainer
-RichTextLabel

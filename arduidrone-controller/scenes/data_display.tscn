@@ -6,15 +6,15 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sa3gr"]
 font_size = 30
 
-[node name="DataDisplay" type="Control" node_paths=PackedStringArray("title_label", "entry_container", "line", "main_control")]
+[node name="DataDisplay" type="Control" node_paths=PackedStringArray("entry_container", "title_label", "line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 164.0
 offset_bottom = 70.0
 script = ExtResource("1_8qxge")
+entry_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/EntryContainer")
 title = "Data Title"
 title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
-entry_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/EntryContainer")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 

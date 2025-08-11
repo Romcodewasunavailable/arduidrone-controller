@@ -7,24 +7,25 @@
 [sub_resource type="LabelSettings" id="LabelSettings_4nlb8"]
 font_size = 30
 
-[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("title_label", "label_container", "graph_control", "grid_control", "line_control", "follow_button", "update_timer", "line", "main_control")]
+[node name="GraphDisplay" type="Control" node_paths=PackedStringArray("label_container", "graph_control", "grid_control", "line_control", "follow_button", "update_timer", "title_label", "line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 364.0
 offset_bottom = 299.0
 script = ExtResource("1_4nlb8")
-title = "Graph Title"
 keys = PackedStringArray()
-values = PackedFloat32Array()
 colors = PackedColorArray()
-max_points = null
-title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
+values = PackedFloat32Array()
+update_hz = 60.0
+max_points = 8192
 label_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/LabelContainer")
 graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl")
 grid_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/GridControl")
 line_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/LineControl")
 follow_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/PanelContainer/FollowButton")
 update_timer = NodePath("UpdateTimer")
+title = "Graph Title"
+title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
@@ -111,7 +112,7 @@ size_flags_vertical = 0
 text = "Clear"
 
 [node name="UpdateTimer" type="Timer" parent="."]
-wait_time = 0.0166667
+wait_time = 0.05
 autostart = true
 
 [connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/GraphControl" to="." method="_on_graph_control_gui_input"]
