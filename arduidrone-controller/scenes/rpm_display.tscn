@@ -18,7 +18,6 @@ size_flags_vertical = 4
 script = ExtResource("1_6c0va")
 rpm = 3750.0
 max_rpm = 10000.0
-drone_axis = null
 rpm_gradient = ExtResource("2_uq4b5")
 texture_progress_bar = NodePath("PanelContainer/MarginContainer/HBoxContainer/TextureProgressBar")
 label = NodePath("PanelContainer/MarginContainer/HBoxContainer/Label")
