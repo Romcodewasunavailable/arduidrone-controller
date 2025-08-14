@@ -10,6 +10,9 @@ enum Axis {
 	YAW,
 	PITCH,
 	ROLL,
+	PITCH_PID_INPUT,
+	PITCH_PID_OUTPUT,
+	PITCH_PID_SETPOINT,
 }
 enum Flag {
 	IS_ARMED,

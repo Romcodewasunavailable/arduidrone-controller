@@ -2,6 +2,8 @@
 class_name DataEntryDisplay
 extends Control
 
+const FLOAT_SNAP = 0.01
+
 @export var key: String:
 	set(new_value):
 		key = new_value
@@ -12,7 +14,7 @@ extends Control
 	set(new_value):
 		value = new_value
 		if is_node_ready():
-			value_label.text = str(value)
+			value_label.text = str(snapped(value, FLOAT_SNAP) if value is float else value)
 
 @export var key_label: Label
 @export var value_label: Label

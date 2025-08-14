@@ -13,3 +13,4 @@ func _ready() -> void:
 
 	keys = Drone.Axis.keys() + Drone.Flag.keys()
 	Drone.state_updated.connect(_on_drone_state_updated)
+	_on_drone_state_updated()

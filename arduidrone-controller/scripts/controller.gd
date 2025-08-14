@@ -7,9 +7,12 @@ enum Axis {
 	YAW,
 	PITCH,
 	ROLL,
-	PITCH_P,
-	PITCH_I,
-	PITCH_D,
+	PITCH_ANGLE_P, #0.4
+	PITCH_ANGLE_I, #0.2
+	PITCH_ANGLE_D, #0.2
+	PITCH_RATE_P,
+	PITCH_RATE_I,
+	PITCH_RATE_D,
 }
 enum Flag {
 	TOGGLE_ARM,

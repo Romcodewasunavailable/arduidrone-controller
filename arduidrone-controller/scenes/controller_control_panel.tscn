@@ -10,14 +10,14 @@ font_size = 30
 layout_mode = 3
 anchors_preset = 0
 offset_right = 374.0
-offset_bottom = 304.0
+offset_bottom = 409.0
 script = ExtResource("1_vgjfy")
 line = NodePath("Line2D")
 main_control = NodePath("PanelContainer")
 metadata/_custom_type_script = "uid://c7xa78egerg3k"
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(187, 152, 152, 152, 0, 0)
+points = PackedVector2Array(187, 204.5, 187, 187, 0, 0)
 width = 5.0
 end_cap_mode = 2
 
@@ -117,9 +117,9 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Pitch P"
+text = "Pitch Angle P"
 
-[node name="PitchPLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="PitchAnglePLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
 custom_minimum_size = Vector2(19, 31)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -134,9 +134,9 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Pitch I"
+text = "Pitch Angle I"
 
-[node name="PitchILineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
+[node name="PitchAngleILineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6"]
 custom_minimum_size = Vector2(19, 31)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -151,9 +151,60 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Pitch D"
+text = "Pitch Angle D"
 
-[node name="PitchDLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+[node name="PitchAngleDLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(19, 31)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/minimum_character_width = 0
+text = "0"
+expand_to_text_length = true
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Pitch Rate P"
+
+[node name="PitchRatePLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(19, 31)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/minimum_character_width = 0
+text = "0"
+expand_to_text_length = true
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Pitch Rate I"
+
+[node name="PitchRateILineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(19, 31)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/minimum_character_width = 0
+text = "0"
+expand_to_text_length = true
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Pitch Rate D"
+
+[node name="PitchRateDLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
 custom_minimum_size = Vector2(19, 31)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -165,6 +216,9 @@ expand_to_text_length = true
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/DeadzoneLineEdit" to="." method="_on_deadzone_line_edit_text_submitted"]
 [connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/PollRateLineEdit" to="." method="_on_poll_rate_line_edit_text_submitted"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/SendUDPCheckButton" to="." method="_on_send_udp_check_button_toggled"]
-[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/PitchPLineEdit" to="." method="_on_pitch_p_line_edit_text_submitted"]
-[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6/PitchILineEdit" to="." method="_on_pitch_i_line_edit_text_submitted"]
-[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7/PitchDLineEdit" to="." method="_on_pitch_d_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/PitchAnglePLineEdit" to="." method="_on_pitch_angle_p_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer6/PitchAngleILineEdit" to="." method="_on_pitch_angle_i_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer7/PitchAngleDLineEdit" to="." method="_on_pitch_angle_d_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer8/PitchRatePLineEdit" to="." method="_on_pitch_rate_p_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer9/PitchRateILineEdit" to="." method="_on_pitch_rate_i_line_edit_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer10/PitchRateDLineEdit" to="." method="_on_pitch_rate_d_line_edit_text_submitted"]

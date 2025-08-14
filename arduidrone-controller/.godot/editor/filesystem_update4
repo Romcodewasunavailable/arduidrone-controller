@@ -1,7 +1,6 @@
 res://scenes/arduidrone_controller.tscn
 res://visuals/normal_style_box.tres
 res://visuals/background_style_box.tres
-res://scripts/drone.gd
 res://scenes/drone_model_display.tscn
 res://scenes/rpm_display.tscn
 res://scenes/data_display.tscn
@@ -9,4 +8,9 @@ res://scenes/graph_display.tscn
 res://scenes/terminal.tscn
 res://scenes/data_graph_display.tscn
 res://scripts/arduino.cs
+res://scripts/drone.gd
 res://scripts/gyro_data_display.gd
+res://scripts/data_entry_display.gd
+res://scripts/controller.gd
+res://scenes/controller_control_panel.tscn
+res://scripts/controller_control_panel.gd
