@@ -47,10 +47,10 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="UDPControlPanel" parent="PCIcon/UDPTerminal/Control" instance=ExtResource("6_roiwr")]
-offset_left = 127.0
-offset_top = -114.5
-offset_right = 480.0
-offset_bottom = 119.5
+offset_left = 101.0
+offset_top = -127.5
+offset_right = 454.0
+offset_bottom = 106.5
 
 [node name="ControllerDataDisplay" parent="PCIcon" instance=ExtResource("3_8gtqt")]
 offset_left = -13.0
@@ -64,22 +64,6 @@ line_anchor = Vector2(50, 150)
 
 [node name="Control" type="Control" parent="PCIcon/ControllerDataDisplay"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="ControllerControlPanel" parent="PCIcon/ControllerDataDisplay/Control" instance=ExtResource("9_i5msw")]
-offset_left = 163.0
-offset_top = -95.0
-offset_right = 537.0
-offset_bottom = 314.0
-
-[node name="Control2" type="Control" parent="PCIcon/ControllerDataDisplay"]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -88,16 +72,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="DataGraphDisplay" parent="PCIcon/ControllerDataDisplay/Control2" node_paths=PackedStringArray("data_display") instance=ExtResource("8_nbbtf")]
-offset_left = -145.0
-offset_top = 134.0
-offset_right = 254.0
-offset_bottom = 456.0
-data_display = NodePath("../..")
-keys = PackedStringArray("THROTTLE", "YAW", "PITCH", "ROLL")
-colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
-values = PackedFloat32Array(0, 0, 0, 0)
-title = "Controller Graph"
+[node name="ControllerControlPanel" parent="PCIcon/ControllerDataDisplay/Control" instance=ExtResource("9_i5msw")]
+offset_left = -165.0
+offset_top = 91.0
+offset_right = 209.0
+offset_bottom = 500.0
 
 [node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
 layout_mode = 1
@@ -106,57 +85,57 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 134.0
-offset_top = -132.0
-offset_right = 676.0
-offset_bottom = 380.0
+offset_left = -430.0
+offset_top = -148.0
+offset_right = 112.0
+offset_bottom = 364.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = -242.0
-offset_top = 58.0
-offset_right = -2.0
-offset_bottom = 146.0
+offset_left = -98.0
+offset_top = 176.0
+offset_right = 142.0
+offset_bottom = 264.0
 rpm = 1000.0
 max_rpm = 2000.0
 line_anchor = Vector2(59, 62)
 
 [node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = 538.0
-offset_top = -16.0
-offset_right = 778.0
-offset_bottom = 72.0
+offset_left = 384.0
+offset_top = 208.0
+offset_right = 624.0
+offset_bottom = 296.0
 rpm = 1000.0
 max_rpm = 2000.0
 drone_axis = 1
 line_anchor = Vector2(483, 62)
 
 [node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = -242.0
-offset_top = 431.0
-offset_right = -2.0
-offset_bottom = 519.0
+offset_left = -107.0
+offset_top = 510.0
+offset_right = 133.0
+offset_bottom = 598.0
 rpm = 1000.0
 max_rpm = 2000.0
 drone_axis = 2
 line_anchor = Vector2(59, 450)
 
 [node name="RPMDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
-offset_left = 538.0
-offset_top = 429.0
-offset_right = 778.0
-offset_bottom = 517.0
+offset_left = 390.0
+offset_top = 521.0
+offset_right = 630.0
+offset_bottom = 609.0
 rpm = 1000.0
 max_rpm = 2000.0
 drone_axis = 3
 line_anchor = Vector2(483, 450)
 
 [node name="GyroDataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
-offset_left = 22.0
-offset_top = -153.0
-offset_right = 212.0
-offset_bottom = -6.0
+offset_left = 404.0
+offset_top = -121.0
+offset_right = 594.0
+offset_bottom = 26.0
 script = ExtResource("13_roiwr")
 keys = PackedStringArray("YAW", "PITCH", "ROLL")
 title = "Drone Data"
@@ -170,12 +149,33 @@ anchor_right = 0.5
 grow_horizontal = 2
 
 [node name="DataGraphDisplay" parent="DroneModelDisplay/GyroDataDisplay/Control" node_paths=PackedStringArray("data_display") instance=ExtResource("8_nbbtf")]
-offset_left = 117.5
-offset_top = -226.0
-offset_right = 682.5
-offset_bottom = 96.0
+offset_left = 160.0
+offset_top = -250.0
+offset_right = 868.0
+offset_bottom = 72.0
 data_display = NodePath("../..")
-keys = PackedStringArray("PITCH_PID_INPUT", "PITCH_PID_OUTPUT", "PITCH_PID_SETPOINT")
+keys = PackedStringArray("PITCH_ANGLE_PID_INPUT", "PITCH_ANGLE_PID_OUTPUT", "PITCH_ANGLE_PID_SETPOINT")
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
 values = PackedFloat32Array(0, 0, 0)
-title = "Gyro Graph"
+title = "Pitch Angle PID Graph"
+
+[node name="Control2" type="Control" parent="DroneModelDisplay/GyroDataDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="DataGraphDisplay2" parent="DroneModelDisplay/GyroDataDisplay/Control2" node_paths=PackedStringArray("data_display") instance=ExtResource("8_nbbtf")]
+offset_left = 59.0
+offset_top = 21.5
+offset_right = 767.0
+offset_bottom = 343.5
+data_display = NodePath("../..")
+keys = PackedStringArray("PITCH_RATE_PID_INPUT", "PITCH_RATE_PID_OUTPUT", "PITCH_RATE_PID_SETPOINT")
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
+values = PackedFloat32Array(0, 0, 0)
+title = "Pitch Rate PID Graph"

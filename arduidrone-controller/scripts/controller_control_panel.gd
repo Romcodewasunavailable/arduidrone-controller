@@ -40,3 +40,7 @@ func _on_pitch_rate_i_line_edit_text_submitted(new_text):
 
 func _on_pitch_rate_d_line_edit_text_submitted(new_text):
 	Controller.axis_state[Controller.Axis.PITCH_RATE_D] = float(new_text)
+
+
+func _on_gyro_rate_alpha_line_edit_text_submitted(new_text):
+	Controller.axis_state[Controller.Axis.GYRO_RATE_ALPHA] = float(new_text)
