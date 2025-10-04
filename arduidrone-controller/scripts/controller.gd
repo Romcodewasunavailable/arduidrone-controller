@@ -17,6 +17,8 @@ enum Axis {
 }
 enum Flag {
 	TOGGLE_ARM,
+	THROTTLE_DOWN,
+	THROTTLE_UP,
 }
 
 const AXIS_MAP = {
@@ -26,7 +28,11 @@ const AXIS_MAP = {
 	JOY_AXIS_RIGHT_X: Axis.ROLL,
 }
 const FLAG_MAP = {
+	KEY_KP_ENTER: Flag.TOGGLE_ARM,
 	JOY_BUTTON_START: Flag.TOGGLE_ARM,
+	JOY_BUTTON_RIGHT_SHOULDER: Flag.TOGGLE_ARM,
+	JOY_BUTTON_DPAD_DOWN: Flag.THROTTLE_DOWN,
+	JOY_BUTTON_DPAD_UP: Flag.THROTTLE_UP,
 }
 
 var update_timer: Timer
@@ -72,6 +78,9 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventJoypadButton:
 		if FLAG_MAP.has(event.button_index):
 			flag_state[FLAG_MAP[event.button_index]] = event.pressed
+	elif event is InputEventKey:
+		if FLAG_MAP.has(event.keycode):
+			flag_state[FLAG_MAP[event.keycode]] = event.pressed
 
 
 func _ready() -> void:

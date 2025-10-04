@@ -28,6 +28,7 @@ offset_right = -637.0
 offset_bottom = 16.0
 
 [node name="UDPTerminal" parent="PCIcon" instance=ExtResource("6_uc267")]
+layout_mode = 0
 offset_left = -30.0
 offset_top = -236.0
 offset_right = 405.0
@@ -47,12 +48,14 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="UDPControlPanel" parent="PCIcon/UDPTerminal/Control" instance=ExtResource("6_roiwr")]
+layout_mode = 0
 offset_left = 101.0
 offset_top = -127.5
 offset_right = 454.0
 offset_bottom = 106.5
 
 [node name="ControllerDataDisplay" parent="PCIcon" instance=ExtResource("3_8gtqt")]
+layout_mode = 0
 offset_left = -13.0
 offset_top = 21.0
 offset_right = 233.0
@@ -73,10 +76,11 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="ControllerControlPanel" parent="PCIcon/ControllerDataDisplay/Control" instance=ExtResource("9_i5msw")]
+layout_mode = 0
 offset_left = -165.0
 offset_top = 91.0
 offset_right = 209.0
-offset_bottom = 500.0
+offset_bottom = 535.0
 
 [node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
 layout_mode = 1
@@ -93,6 +97,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
 offset_left = -98.0
 offset_top = 176.0
 offset_right = 142.0
@@ -102,6 +107,7 @@ max_rpm = 2000.0
 line_anchor = Vector2(59, 62)
 
 [node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
 offset_left = 384.0
 offset_top = 208.0
 offset_right = 624.0
@@ -112,6 +118,7 @@ drone_axis = 1
 line_anchor = Vector2(483, 62)
 
 [node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
 offset_left = -107.0
 offset_top = 510.0
 offset_right = 133.0
@@ -122,6 +129,7 @@ drone_axis = 2
 line_anchor = Vector2(59, 450)
 
 [node name="RPMDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
 offset_left = 390.0
 offset_top = 521.0
 offset_right = 630.0
@@ -132,6 +140,7 @@ drone_axis = 3
 line_anchor = Vector2(483, 450)
 
 [node name="GyroDataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
+layout_mode = 0
 offset_left = 404.0
 offset_top = -121.0
 offset_right = 594.0
@@ -149,6 +158,7 @@ anchor_right = 0.5
 grow_horizontal = 2
 
 [node name="DataGraphDisplay" parent="DroneModelDisplay/GyroDataDisplay/Control" node_paths=PackedStringArray("data_display") instance=ExtResource("8_nbbtf")]
+layout_mode = 0
 offset_left = 160.0
 offset_top = -250.0
 offset_right = 868.0
@@ -170,6 +180,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="DataGraphDisplay2" parent="DroneModelDisplay/GyroDataDisplay/Control2" node_paths=PackedStringArray("data_display") instance=ExtResource("8_nbbtf")]
+layout_mode = 0
 offset_left = 59.0
 offset_top = 21.5
 offset_right = 767.0

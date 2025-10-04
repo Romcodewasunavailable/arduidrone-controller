@@ -1,13 +1,3 @@
-res://scenes/arduidrone_controller.tscn
-res://visuals/normal_style_box.tres
-res://visuals/background_style_box.tres
-res://scripts/drone.gd
-res://scenes/drone_model_display.tscn
-res://scenes/rpm_display.tscn
-res://scenes/data_display.tscn
-res://scenes/graph_display.tscn
-res://scenes/terminal.tscn
-res://scenes/controller_control_panel.tscn
 res://scripts/arduino.cs
+res://scenes/arduidrone_controller.tscn
 res://scripts/controller.gd
-res://scripts/controller_control_panel.gd
