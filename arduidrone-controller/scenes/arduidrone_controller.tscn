@@ -80,7 +80,7 @@ layout_mode = 0
 offset_left = -165.0
 offset_top = 91.0
 offset_right = 209.0
-offset_bottom = 535.0
+offset_bottom = 500.0
 
 [node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
 layout_mode = 1

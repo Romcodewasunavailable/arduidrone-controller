@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cympu0egrh5sd"]
+
+[ext_resource type="Script" uid="uid://bkfjk4cwlcq7s" path="res://scripts/controller_axis_edit.gd" id="1_6upfw"]
+
+[node name="ControllerAxisEdit" type="HBoxContainer" node_paths=PackedStringArray("axis_name_label", "axis_value_line_edit")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+script = ExtResource("1_6upfw")
+axis_name_label = NodePath("AxisNameLabel")
+axis_value_line_edit = NodePath("AxisValueLineEdit")
+
+[node name="AxisNameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Throttle"
+
+[node name="AxisValueLineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(19, 31)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/minimum_character_width = 0
+text = "0"
+expand_to_text_length = true
+
+[connection signal="text_submitted" from="AxisValueLineEdit" to="." method="_on_axis_value_line_edit_text_submitted"]
