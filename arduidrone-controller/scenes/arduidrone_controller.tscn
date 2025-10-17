@@ -80,7 +80,7 @@ layout_mode = 0
 offset_left = -165.0
 offset_top = 91.0
 offset_right = 209.0
-offset_bottom = 500.0
+offset_bottom = 605.0
 
 [node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
 layout_mode = 1
@@ -186,7 +186,7 @@ offset_top = 21.5
 offset_right = 767.0
 offset_bottom = 343.5
 data_display = NodePath("../..")
-keys = PackedStringArray("PITCH_RATE_PID_INPUT", "PITCH_RATE_PID_OUTPUT", "PITCH_RATE_PID_SETPOINT")
+keys = PackedStringArray("YAW_RATE_PID_INPUT", "YAW_RATE_PID_OUTPUT", "YAW_RATE_PID_SETPOINT")
 colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
 values = PackedFloat32Array(0, 0, 0)
-title = "Pitch Rate PID Graph"
+title = "Yaw Rate PID Graph"

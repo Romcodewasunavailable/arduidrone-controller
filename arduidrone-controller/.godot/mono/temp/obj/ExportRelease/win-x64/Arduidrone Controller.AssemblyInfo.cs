@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Arduidrone Controller")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("ExportRelease")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0ae1a71162819d282ce3b4bfa535e1b18524828")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a98a07bc3f3d4186f0ab5de7c447dc6423a762c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Arduidrone Controller")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Arduidrone Controller")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

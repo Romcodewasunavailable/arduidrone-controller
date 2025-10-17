@@ -7,12 +7,15 @@ enum Axis {
 	YAW,
 	PITCH,
 	ROLL,
-	ANGLE_P, # 3.0
-	ANGLE_I, # 0.1
-	ANGLE_D, # 0.04
-	RATE_P, # 0.35
-	RATE_I, # 0.1
-	RATE_D, # 0.02
+	TILT_ANGLE_P, # 3.0
+	TILT_ANGLE_I, # 0.0
+	TILT_ANGLE_D, # 0.04
+	TILT_RATE_P, # 0.35
+	TILT_RATE_I, # 0.1
+	TILT_RATE_D, # 0.02
+	YAW_RATE_P, # 2.0
+	YAW_RATE_I,
+	YAW_RATE_D,
 }
 enum Flag {
 	TOGGLE_ARM,
@@ -37,7 +40,7 @@ const FLAG_MAP = {
 var update_timer: Timer
 
 var precision = 0.01
-var deadzone = 0.05
+var deadzone = 0.1
 var send_udp = true
 
 var axis_state = []

@@ -1,5 +1,5 @@
-res://scenes/arduidrone_controller.tscn::4ceb3ec31ae5db11e1ac881eba8b1508::1755350277::res://.godot/exported/133200997/export-a74c84f3b6db7a17dc436f022589e81c-arduidrone_controller.scn
-res://scenes/controller_control_panel.tscn::75462c6523ab9e01448145fb1148500f::1755362040::res://.godot/exported/133200997/export-db3fd35d45db1196055b6f6a4925d7a8-controller_control_panel.scn
+res://scenes/arduidrone_controller.tscn::8b9f4bc184f4b3c963b2bdbeb34f57b0::1760705246::res://.godot/exported/133200997/export-a74c84f3b6db7a17dc436f022589e81c-arduidrone_controller.scn
+res://scenes/controller_control_panel.tscn::ac7c11c8918ee2ff6d54cf7187d92797::1760709950::res://.godot/exported/133200997/export-db3fd35d45db1196055b6f6a4925d7a8-controller_control_panel.scn
 res://scenes/data_display.tscn::c247c42390571da2302acfd9885af7cf::1755350278::res://.godot/exported/133200997/export-08275dcea5c7a0abaceac954d9702990-data_display.scn
 res://scenes/data_entry_display.tscn::4a516e2c1616bb3dc623978827839666::1749312434::res://.godot/exported/133200997/export-13cbb06207bf7b24d1c7d7481797fe7d-data_entry_display.scn
 res://scenes/data_graph_display.tscn::f33f6273a926baa2989498151b222fc4::1755176409::res://.godot/exported/133200997/export-e9c39609a2957e7e89d1dbaf02b3e866-data_graph_display.scn
@@ -13,3 +13,4 @@ res://scenes/udp_control_panel.tscn::d5b37ad24b3f85b9dadd0f6c22d4e41a::175516339
 res://visuals/background_style_box.tres::fdbb6b0082eaeb57fe9216d18aac9d66::1755339129::res://.godot/exported/133200997/export-36e310a3861dca9d4f1d30d146f72424-background_style_box.res
 res://visuals/normal_style_box.tres::76d37d9bc1aa28a4d10b52bf76aa9f07::1755339129::res://.godot/exported/133200997/export-49a5100d2c1a6d2f20944925b6801a5f-normal_style_box.res
 res://visuals/rpm_gradient.tres::f0f932d1d6d20d92541c5d2f41982463::1746132702::res://.godot/exported/133200997/export-bd65d455069d810d9fa1da208e11eb81-rpm_gradient.res
+res://scenes/controller_axis_edit.tscn::6740881b4cbccfc043ea543bdb5d6f69::1760526150::res://.godot/exported/133200997/export-6c0dd6c9a2211d01cefe44be73eb48c0-controller_axis_edit.scn
