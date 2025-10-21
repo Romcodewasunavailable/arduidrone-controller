@@ -1,3 +1,3 @@
-res://scenes/controller_control_panel.tscn
+res://scenes/rpm_display.tscn
+res://scripts/rpm_display.gd
 res://scenes/arduidrone_controller.tscn
-res://scripts/controller.gd
