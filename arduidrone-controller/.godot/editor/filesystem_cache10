@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1761474999
+::res://::1761475080
 export_presets.cfg::TextFile::-1::1760797989::0::1::::<><><>0<>0<><>::
 ::res://scenes/::1761385122
 arduidrone_controller.tscn::PackedScene::1537580164402713830::1761385122::0::1::::<><><>0<>0<><>::uid://b06qn2238wigf::::res://scenes/drone_model_display.tscn<>uid://cv4v4s03etgf3::::res://scenes/rpm_display.tscn<>uid://bc0qiumpes0o1::::res://scenes/pc_icon.tscn<>uid://ckdsqituoufmc::::res://scenes/data_display.tscn<>uid://ddtvaqys7wmsh::::res://scenes/udp_control_panel.tscn<>uid://rw2uy735jv2s::::res://scenes/terminal.tscn<>uid://wgi8om6k8tga::::res://scripts/udp_commands.gd<>uid://cf8iu4oxarr2h::::res://scenes/data_graph_display.tscn<>uid://xqmenq7kceac::::res://scenes/controller_control_panel.tscn<>uid://c07o0xqushosv::::res://scripts/controller_data_display.gd<>uid://0f0saemnuqbn::::res://scripts/gyro_data_display.gd
