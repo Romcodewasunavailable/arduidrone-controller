@@ -16,3 +16,7 @@ func _on_poll_rate_line_edit_text_submitted(new_text: String) -> void:
 
 func _on_send_udp_check_button_toggled(toggled_on: bool) -> void:
 	Controller.set_send_udp(toggled_on)
+
+
+func _on_dji_controller_check_button_toggled(toggled_on: bool) -> void:
+	Controller.set_dji_controller(toggled_on)
