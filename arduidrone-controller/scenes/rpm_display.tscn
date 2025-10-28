@@ -66,5 +66,5 @@ tint_under = Color(0.14, 0.14, 0.14, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
-text = "3750 RPM"
+text = "3750 MS"
 label_settings = SubResource("LabelSettings_uq4b5")
