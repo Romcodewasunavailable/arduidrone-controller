@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cv4v4s03etgf3"]
 
-[ext_resource type="Script" uid="uid://lf8w3eausewg" path="res://scripts/rpm_display.gd" id="1_6c0va"]
+[ext_resource type="Script" uid="uid://lf8w3eausewg" path="res://scripts/throttle_display.gd" id="1_6c0va"]
 [ext_resource type="Texture2D" uid="uid://cq65f8tcrh524" path="res://visuals/circle.png" id="1_p7xv5"]
 [ext_resource type="Gradient" uid="uid://cqfsv8hde2c1m" path="res://visuals/rpm_gradient.tres" id="2_uq4b5"]
 [ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="3_lgs8q"]
@@ -8,7 +8,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_uq4b5"]
 font_size = 30
 
-[node name="RPMDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line", "main_control")]
+[node name="ThrottleDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line", "main_control")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 240.0
@@ -16,8 +16,6 @@ offset_bottom = 88.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_6c0va")
-rpm = 3750.0
-max_rpm = 10000.0
 rpm_gradient = ExtResource("2_uq4b5")
 texture_progress_bar = NodePath("PanelContainer/MarginContainer/HBoxContainer/TextureProgressBar")
 label = NodePath("PanelContainer/MarginContainer/HBoxContainer/Label")
@@ -56,7 +54,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.001
-value = 0.375
 fill_mode = 4
 texture_under = ExtResource("1_p7xv5")
 texture_progress = ExtResource("1_p7xv5")
@@ -66,5 +63,5 @@ tint_under = Color(0.14, 0.14, 0.14, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
-text = "3750 MS"
+text = "0 μs"
 label_settings = SubResource("LabelSettings_uq4b5")

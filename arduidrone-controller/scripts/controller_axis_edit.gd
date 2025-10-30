@@ -11,5 +11,9 @@ extends Control
 @export var axis_value_line_edit: LineEdit
 
 
+func _ready() -> void:
+	axis_value_line_edit.text = str(Controller.axis_state[controller_axis])
+
+
 func _on_axis_value_line_edit_text_submitted(new_text: String) -> void:
 	Controller.axis_state[controller_axis] = float(new_text)

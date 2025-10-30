@@ -3,10 +3,10 @@ extends Node
 signal state_updated()
 
 enum Axis {
-	MS_1,
-	MS_2,
-	MS_3,
-	MS_4,
+	THROTTLE_1,
+	THROTTLE_2,
+	THROTTLE_3,
+	THROTTLE_4,
 	PITCH,
 	ROLL,
 	YAW,

@@ -78,10 +78,10 @@ grow_vertical = 0
 
 [node name="ControllerControlPanel" parent="PCIcon/ControllerDataDisplay/Control" instance=ExtResource("9_i5msw")]
 layout_mode = 0
-offset_left = -165.0
-offset_top = 91.0
-offset_right = 209.0
-offset_bottom = 605.0
+offset_left = -151.0
+offset_top = 28.0
+offset_right = 223.0
+offset_bottom = 570.0
 
 [node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
 layout_mode = 1
@@ -97,46 +97,38 @@ offset_bottom = 364.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+[node name="ThrottleDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
 layout_mode = 0
 offset_left = -98.0
 offset_top = 176.0
 offset_right = 142.0
 offset_bottom = 264.0
-rpm = 1000.0
-max_rpm = 2000.0
 line_anchor = Vector2(59, 62)
 
-[node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+[node name="ThrottleDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
 layout_mode = 0
 offset_left = 384.0
 offset_top = 208.0
 offset_right = 624.0
 offset_bottom = 296.0
-rpm = 1000.0
-max_rpm = 2000.0
 drone_axis = 1
 line_anchor = Vector2(483, 62)
 
-[node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+[node name="ThrottleDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
 layout_mode = 0
 offset_left = -107.0
 offset_top = 510.0
 offset_right = 133.0
 offset_bottom = 598.0
-rpm = 1000.0
-max_rpm = 2000.0
 drone_axis = 2
 line_anchor = Vector2(59, 450)
 
-[node name="RPMDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+[node name="ThrottleDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
 layout_mode = 0
 offset_left = 390.0
 offset_top = 521.0
 offset_right = 630.0
 offset_bottom = 609.0
-rpm = 1000.0
-max_rpm = 2000.0
 drone_axis = 3
 line_anchor = Vector2(483, 450)
 

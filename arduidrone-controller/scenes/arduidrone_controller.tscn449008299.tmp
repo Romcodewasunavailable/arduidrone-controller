@@ -1,0 +1,193 @@
+[gd_scene load_steps=12 format=3 uid="uid://v52yrc83mh5o"]
+
+[ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
+[ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
+[ext_resource type="PackedScene" uid="uid://bc0qiumpes0o1" path="res://scenes/pc_icon.tscn" id="2_eyunb"]
+[ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
+[ext_resource type="PackedScene" uid="uid://ddtvaqys7wmsh" path="res://scenes/udp_control_panel.tscn" id="6_roiwr"]
+[ext_resource type="PackedScene" uid="uid://rw2uy735jv2s" path="res://scenes/terminal.tscn" id="6_uc267"]
+[ext_resource type="Script" uid="uid://wgi8om6k8tga" path="res://scripts/udp_commands.gd" id="7_4dh6d"]
+[ext_resource type="PackedScene" uid="uid://cf8iu4oxarr2h" path="res://scenes/data_graph_display.tscn" id="8_nbbtf"]
+[ext_resource type="PackedScene" uid="uid://xqmenq7kceac" path="res://scenes/controller_control_panel.tscn" id="9_i5msw"]
+[ext_resource type="Script" uid="uid://c07o0xqushosv" path="res://scripts/controller_data_display.gd" id="9_roiwr"]
+[ext_resource type="Script" uid="uid://0f0saemnuqbn" path="res://scripts/gyro_data_display.gd" id="13_roiwr"]
+
+[node name="ArduidroneController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+
+[node name="PCIcon" parent="." instance=ExtResource("2_eyunb")]
+layout_mode = 1
+offset_left = -893.0
+offset_top = -240.0
+offset_right = -637.0
+offset_bottom = 16.0
+
+[node name="UDPTerminal" parent="PCIcon" instance=ExtResource("6_uc267")]
+layout_mode = 0
+offset_left = -30.0
+offset_top = -236.0
+offset_right = 405.0
+offset_bottom = -11.0
+command_script = ExtResource("7_4dh6d")
+title = "UDP Terminal"
+line_anchor = Vector2(50, 150)
+
+[node name="Control" type="Control" parent="PCIcon/UDPTerminal"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="UDPControlPanel" parent="PCIcon/UDPTerminal/Control" instance=ExtResource("6_roiwr")]
+layout_mode = 0
+offset_left = 101.0
+offset_top = -127.5
+offset_right = 454.0
+offset_bottom = 106.5
+
+[node name="ControllerDataDisplay" parent="PCIcon" instance=ExtResource("3_8gtqt")]
+layout_mode = 0
+offset_left = -13.0
+offset_top = 21.0
+offset_right = 233.0
+offset_bottom = 195.0
+script = ExtResource("9_roiwr")
+keys = PackedStringArray("THROTTLE", "YAW", "PITCH", "ROLL")
+title = "Controller Data"
+line_anchor = Vector2(50, 150)
+
+[node name="Control" type="Control" parent="PCIcon/ControllerDataDisplay"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ControllerControlPanel" parent="PCIcon/ControllerDataDisplay/Control" instance=ExtResource("9_i5msw")]
+layout_mode = 0
+offset_left = -165.0
+offset_top = 91.0
+offset_right = 209.0
+offset_bottom = 633.0
+
+[node name="DroneModelDisplay" parent="." instance=ExtResource("1_es4tc")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -148.0
+offset_right = 112.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RPMDisplay" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
+offset_left = -98.0
+offset_top = 176.0
+offset_right = 142.0
+offset_bottom = 264.0
+rpm = 1000.0
+max_rpm = 2000.0
+line_anchor = Vector2(59, 62)
+
+[node name="RPMDisplay2" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 208.0
+offset_right = 624.0
+offset_bottom = 296.0
+rpm = 1000.0
+max_rpm = 2000.0
+drone_axis = 1
+line_anchor = Vector2(483, 62)
+
+[node name="RPMDisplay3" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
+offset_left = -107.0
+offset_top = 510.0
+offset_right = 133.0
+offset_bottom = 598.0
+rpm = 1000.0
+max_rpm = 2000.0
+drone_axis = 2
+line_anchor = Vector2(59, 450)
+
+[node name="RPMDisplay4" parent="DroneModelDisplay" instance=ExtResource("2_es4tc")]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 521.0
+offset_right = 630.0
+offset_bottom = 609.0
+rpm = 1000.0
+max_rpm = 2000.0
+drone_axis = 3
+line_anchor = Vector2(483, 450)
+
+[node name="GyroDataDisplay" parent="DroneModelDisplay" instance=ExtResource("3_8gtqt")]
+layout_mode = 0
+offset_left = 404.0
+offset_top = -121.0
+offset_right = 594.0
+offset_bottom = 26.0
+script = ExtResource("13_roiwr")
+keys = PackedStringArray("YAW", "PITCH", "ROLL")
+title = "Drone Data"
+line_anchor = Vector2(271, 180)
+
+[node name="Control" type="Control" parent="DroneModelDisplay/GyroDataDisplay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="DataGraphDisplay" parent="DroneModelDisplay/GyroDataDisplay/Control" node_paths=PackedStringArray("data_display") instance=ExtResource("8_nbbtf")]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -250.0
+offset_right = 868.0
+offset_bottom = 72.0
+data_display = NodePath("../..")
+keys = PackedStringArray("PITCH_ANGLE_PID_INPUT", "PITCH_ANGLE_PID_OUTPUT", "PITCH_ANGLE_PID_SETPOINT")
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
+values = PackedFloat32Array(0, 0, 0)
+title = "Pitch Angle PID Graph"
+
+[node name="Control2" type="Control" parent="DroneModelDisplay/GyroDataDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="DataGraphDisplay2" parent="DroneModelDisplay/GyroDataDisplay/Control2" node_paths=PackedStringArray("data_display") instance=ExtResource("8_nbbtf")]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 21.5
+offset_right = 767.0
+offset_bottom = 343.5
+data_display = NodePath("../..")
+keys = PackedStringArray("YAW_RATE_PID_INPUT", "YAW_RATE_PID_OUTPUT", "YAW_RATE_PID_SETPOINT")
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
+values = PackedFloat32Array(0, 0, 0)
+title = "Yaw Rate PID Graph"

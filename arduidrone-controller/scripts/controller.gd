@@ -7,13 +7,13 @@ enum Axis {
 	YAW,
 	PITCH,
 	ROLL,
-	TILT_ANGLE_P, # 3.0
-	TILT_ANGLE_I, # 0.0
-	TILT_ANGLE_D, # 0.04
-	TILT_RATE_P, # 0.35
-	TILT_RATE_I, # 0.1
-	TILT_RATE_D, # 0.02
-	YAW_RATE_P, # 2.0
+	TILT_ANGLE_P,
+	TILT_ANGLE_I,
+	TILT_ANGLE_D,
+	TILT_RATE_P,
+	TILT_RATE_I,
+	TILT_RATE_D,
+	YAW_RATE_P,
 	YAW_RATE_I,
 	YAW_RATE_D,
 }
@@ -21,6 +21,18 @@ enum Flag {
 	TOGGLE_ARM,
 	THROTTLE_DOWN,
 	THROTTLE_UP,
+}
+
+const AXIS_DEFAULT_VALUES = {
+	Axis.TILT_ANGLE_P: 3.0,
+	Axis.TILT_ANGLE_I: 0.0,
+	Axis.TILT_ANGLE_D: 0.04,
+	Axis.TILT_RATE_P: 0.35,
+	Axis.TILT_RATE_I: 0.1,
+	Axis.TILT_RATE_D: 0.02,
+	Axis.YAW_RATE_P: 2.0,
+	Axis.YAW_RATE_I: 0.0,
+	Axis.YAW_RATE_D: 0.0,
 }
 
 const AXIS_MAP = {
@@ -115,6 +127,8 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	axis_state.resize(Axis.size())
 	axis_state.fill(0.0)
+	for axis in AXIS_DEFAULT_VALUES:
+		axis_state[axis] = AXIS_DEFAULT_VALUES[axis]
 	flag_state.resize(Flag.size())
 	flag_state.fill(false)
 	state_updated.emit()
