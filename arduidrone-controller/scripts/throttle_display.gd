@@ -7,6 +7,11 @@ extends ConnectedElement
 		throttle = value
 		if is_node_ready():
 			update_display()
+@export var min_throttle: float:
+	set(value):
+		min_throttle = value
+		if is_node_ready():
+			update_display()
 @export var max_throttle: float:
 	set(value):
 		max_throttle = value
@@ -20,7 +25,7 @@ extends ConnectedElement
 
 
 func update_display():
-	texture_progress_bar.value = throttle / max_throttle
+	texture_progress_bar.value = (throttle - min_throttle) / (max_throttle - min_throttle)
 	texture_progress_bar.tint_progress = rpm_gradient.sample(texture_progress_bar.value)
 	label.text = "%d μs" % roundi(throttle)
 

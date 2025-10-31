@@ -28,9 +28,9 @@ const AXIS_DEFAULT_VALUES = {
 	Axis.TILT_ANGLE_I: 0.0,
 	Axis.TILT_ANGLE_D: 0.04,
 	Axis.TILT_RATE_P: 0.35,
-	Axis.TILT_RATE_I: 0.1,
-	Axis.TILT_RATE_D: 0.02,
-	Axis.YAW_RATE_P: 2.0,
+	Axis.TILT_RATE_I: 0.0,
+	Axis.TILT_RATE_D: 0.015,
+	Axis.YAW_RATE_P: 2.5,
 	Axis.YAW_RATE_I: 0.0,
 	Axis.YAW_RATE_D: 0.0,
 }
@@ -112,7 +112,7 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventJoypadMotion:
 		if axis_map.has(event.axis):
-			if dji_controller and event.axis in [JOY_AXIS_RIGHT_X, JOY_AXIS_LEFT_Y]:
+			if event.axis in [JOY_AXIS_LEFT_Y, JOY_AXIS_RIGHT_Y] and not dji_controller:
 				axis_state[axis_map[event.axis]] = -process_axis(event.axis_value)
 			else:
 				axis_state[axis_map[event.axis]] = process_axis(event.axis_value)

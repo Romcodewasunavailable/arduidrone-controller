@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://v52yrc83mh5o"]
 
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="1_es4tc"]
-[ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/rpm_display.tscn" id="2_es4tc"]
+[ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/throttle_display.tscn" id="2_es4tc"]
 [ext_resource type="PackedScene" uid="uid://bc0qiumpes0o1" path="res://scenes/pc_icon.tscn" id="2_eyunb"]
 [ext_resource type="PackedScene" uid="uid://ckdsqituoufmc" path="res://scenes/data_display.tscn" id="3_8gtqt"]
 [ext_resource type="PackedScene" uid="uid://ddtvaqys7wmsh" path="res://scenes/udp_control_panel.tscn" id="6_roiwr"]
