@@ -1,5 +1,5 @@
 res://scenes/arduidrone_controller.tscn::dfc1c76d8f6dfeb3e16605926a0ad6e3::1761855577::res://.godot/exported/133200997/export-a74c84f3b6db7a17dc436f022589e81c-arduidrone_controller.scn
-res://scenes/controller_control_panel.tscn::a0d7841ea9541925e53e31bfdc3307ec::1761856014::res://.godot/exported/133200997/export-db3fd35d45db1196055b6f6a4925d7a8-controller_control_panel.scn
+res://scenes/controller_control_panel.tscn::a0d7841ea9541925e53e31bfdc3307ec::1762016200::res://.godot/exported/133200997/export-db3fd35d45db1196055b6f6a4925d7a8-controller_control_panel.scn
 res://scenes/data_display.tscn::c247c42390571da2302acfd9885af7cf::1755123959::res://.godot/exported/133200997/export-08275dcea5c7a0abaceac954d9702990-data_display.scn
 res://scenes/data_entry_display.tscn::be53170810e54c7906d164413152e384::1748689342::res://.godot/exported/133200997/export-13cbb06207bf7b24d1c7d7481797fe7d-data_entry_display.scn
 res://scenes/data_graph_display.tscn::f33f6273a926baa2989498151b222fc4::1755123959::res://.godot/exported/133200997/export-e9c39609a2957e7e89d1dbaf02b3e866-data_graph_display.scn

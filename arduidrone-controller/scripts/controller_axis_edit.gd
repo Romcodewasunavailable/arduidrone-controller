@@ -12,7 +12,8 @@ extends Control
 
 
 func _ready() -> void:
-	axis_value_line_edit.text = str(Controller.axis_state[controller_axis])
+	if not Engine.is_editor_hint():
+		axis_value_line_edit.text = str(Controller.axis_state[controller_axis])
 
 
 func _on_axis_value_line_edit_text_submitted(new_text: String) -> void:
