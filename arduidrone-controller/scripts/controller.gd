@@ -72,6 +72,8 @@ var dji_controller = true
 
 var axis_state = []
 var flag_state = []
+var axis_ask = []
+var flag_ask = []
 
 
 func set_precision(step_value: float) -> void:
@@ -102,7 +104,7 @@ func process_axis(value: float) -> float:
 
 func _on_update_timer_timeout() -> void:
 	if send_udp:
-		UDP.send([axis_state, flag_state])
+		UDP.send([axis_state, flag_state, axis_ask, flag_ask])
 	state_updated.emit()
 
 

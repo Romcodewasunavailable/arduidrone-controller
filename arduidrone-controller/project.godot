@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Arduidrone Controller"
-run/main_scene="res://scenes/arduidrone_controller.tscn"
+run/main_scene="uid://bj3sqpr1jj06a"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://visuals/icon.svg"
 

@@ -1,15 +1,14 @@
-RichTextLabel
+VBoxContainer
+HSeparator
+Button
 HBoxContainer
+OptionButton      - Matches the "dropdown" keyword.
+MenuButton      - Matches the "dropdown" keyword.
+RichTextLabel
 CheckButton
 Control
-Button
 HSlider
 ConnectedElement
 Label
 LineEdit
 MarginContainer
-VBoxContainer
-DragResizeBox
-TextureRect
-ScrollContainer
-PanelContainer
