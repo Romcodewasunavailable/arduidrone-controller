@@ -12,6 +12,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if Input.is_key_pressed(KEY_CTRL) and event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			scale /= zoom_factor
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			scale *= zoom_factor
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			scale /= zoom_factor
