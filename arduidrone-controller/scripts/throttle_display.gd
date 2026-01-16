@@ -17,7 +17,7 @@ extends ConnectedElement
 		max_throttle = value
 		if is_node_ready():
 			update_display()
-@export var drone_axis := Drone.Axis.THROTTLE_1
+@export var key := Drone.Axis.THROTTLE_1
 
 @export var rpm_gradient: Gradient
 @export var texture_progress_bar: TextureProgressBar
@@ -31,7 +31,7 @@ func update_display():
 
 
 func update_throttle() -> void:
-	throttle = Drone.axis_state[drone_axis]
+	throttle = Drone.axis_state[key]
 
 
 func _ready() -> void:

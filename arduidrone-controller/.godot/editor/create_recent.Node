@@ -1,3 +1,7 @@
+MarginContainer
+Control
+HFlowContainer
+ColorPickerButton
 VBoxContainer
 HSeparator
 Button
@@ -6,9 +10,6 @@ OptionButton      - Matches the "dropdown" keyword.
 MenuButton      - Matches the "dropdown" keyword.
 RichTextLabel
 CheckButton
-Control
 HSlider
 ConnectedElement
 Label
-LineEdit
-MarginContainer

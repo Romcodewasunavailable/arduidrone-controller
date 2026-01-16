@@ -8,7 +8,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_uq4b5"]
 font_size = 30
 
-[node name="ThrottleDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line", "main_control")]
+[node name="ThrottleDisplay" type="Control" node_paths=PackedStringArray("texture_progress_bar", "label", "line", "main_control") groups=["drone_ask"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 240.0

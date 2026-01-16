@@ -60,12 +60,12 @@ layout_mode = 2
 alignment = 1
 
 [node name="RemoveEntryButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
 text = "-"
 
 [node name="AddEntryButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
 text = "+"
 

@@ -1,24 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://chq3qyd576udg"]
+[gd_scene load_steps=2 format=3 uid="uid://vfv3258muynx"]
 
-[ext_resource type="Script" uid="uid://b15giro4sspws" path="res://scripts/custom_data_entry_display.gd" id="1_6qclg"]
+[ext_resource type="Script" uid="uid://bf5g8no7bgrw3" path="res://scripts/custom_line_entry.gd" id="1_rqtbj"]
 
-[node name="CustomDataEntryDisplay" type="HBoxContainer" node_paths=PackedStringArray("key_option_button", "value_label") groups=["drone_ask"]]
-anchors_preset = 10
-anchor_right = 1.0
+[node name="CustomLineEntry" type="HBoxContainer" node_paths=PackedStringArray("key_option_button", "color_picker_button") groups=["drone_ask"]]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_right = 71.5
 offset_bottom = 31.0
 grow_horizontal = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
+size_flags_horizontal = 4
+size_flags_vertical = 0
 alignment = 1
-script = ExtResource("1_6qclg")
+script = ExtResource("1_rqtbj")
 key = null
+color = null
 key_option_button = NodePath("KeyOptionButton")
-value_label = NodePath("ValueLabel")
+color_picker_button = NodePath("ColorPickerButton")
 
 [node name="KeyOptionButton" type="OptionButton" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
 selected = 0
+fit_to_longest_item = false
 item_count = 29
 popup/item_0/text = "Throttle 1"
 popup/item_0/id = 0
@@ -79,12 +83,12 @@ popup/item_27/id = 27
 popup/item_28/text = "Is Armed"
 popup/item_28/id = 28
 
-[node name="ValueLabel" type="Label" parent="."]
-custom_minimum_size = Vector2(64, 0)
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(31, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-mouse_filter = 1
-text = "Value"
-horizontal_alignment = 2
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+edit_intensity = false
 
 [connection signal="item_selected" from="KeyOptionButton" to="." method="_on_key_option_button_item_selected"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

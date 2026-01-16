@@ -24,6 +24,7 @@ Drone="*res://scripts/drone.gd"
 [debug]
 
 gdscript/warnings/unused_signal=0
+gdscript/warnings/shadowed_variable=0
 
 [display]
 
@@ -34,6 +35,10 @@ window/size/mode=2
 [dotnet]
 
 project/assembly_name="Arduidrone Controller"
+
+[global_group]
+
+drone_ask=""
 
 [input]
 

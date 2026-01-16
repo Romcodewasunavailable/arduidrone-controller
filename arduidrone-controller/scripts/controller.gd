@@ -1,6 +1,6 @@
 extends Node
 
-signal state_updated()
+signal state_updated
 
 enum Axis {
 	THROTTLE,
@@ -76,6 +76,52 @@ var axis_ask = []
 var flag_ask = []
 
 
+func _ready() -> void:
+	axis_state.resize(Axis.size())
+	axis_state.fill(0.0)
+	for axis in AXIS_DEFAULT_VALUES:
+		axis_state[axis] = AXIS_DEFAULT_VALUES[axis]
+	flag_state.resize(Flag.size())
+	flag_state.fill(false)
+	state_updated.emit()
+	update_ask()
+
+	update_timer = Timer.new()
+	update_timer.wait_time = 1.0 / 60.0
+	update_timer.timeout.connect(_on_update_timer_timeout)
+	add_child(update_timer)
+	update_timer.start()
+
+
+func _input(event: InputEvent) -> void:
+	var axis_map = DJI_AXIS_MAP if dji_controller else AXIS_MAP
+	var flag_map = DJI_FLAG_MAP if dji_controller else FLAG_MAP
+
+	if event is InputEventJoypadMotion:
+		if axis_map.has(event.axis):
+			if event.axis in [JOY_AXIS_LEFT_Y, JOY_AXIS_RIGHT_Y] and not dji_controller:
+				axis_state[axis_map[event.axis]] = -process_axis(event.axis_value)
+			else:
+				axis_state[axis_map[event.axis]] = process_axis(event.axis_value)
+	elif event is InputEventJoypadButton:
+		if flag_map.has(event.button_index):
+			flag_state[flag_map[event.button_index]] = event.pressed
+	elif event is InputEventKey:
+		if flag_map.has(event.keycode):
+			flag_state[flag_map[event.keycode]] = event.pressed
+
+
+func update_ask() -> void:
+	axis_ask.clear()
+	flag_ask.clear()
+	for node in get_tree().get_nodes_in_group(&"drone_ask"):
+		if node.key < Drone.Axis.size():
+			if node.key not in axis_ask:
+				axis_ask.append(node.key)
+		elif node.key - Drone.Axis.size() not in flag_ask:
+			flag_ask.append(node.key - Drone.Axis.size())
+
+
 func set_precision(step_value: float) -> void:
 	precision = step_value
 
@@ -106,37 +152,3 @@ func _on_update_timer_timeout() -> void:
 	if send_udp:
 		UDP.send([axis_state, flag_state, axis_ask, flag_ask])
 	state_updated.emit()
-
-
-func _input(event: InputEvent) -> void:
-	var axis_map = DJI_AXIS_MAP if dji_controller else AXIS_MAP
-	var flag_map = DJI_FLAG_MAP if dji_controller else FLAG_MAP
-
-	if event is InputEventJoypadMotion:
-		if axis_map.has(event.axis):
-			if event.axis in [JOY_AXIS_LEFT_Y, JOY_AXIS_RIGHT_Y] and not dji_controller:
-				axis_state[axis_map[event.axis]] = -process_axis(event.axis_value)
-			else:
-				axis_state[axis_map[event.axis]] = process_axis(event.axis_value)
-	elif event is InputEventJoypadButton:
-		if flag_map.has(event.button_index):
-			flag_state[flag_map[event.button_index]] = event.pressed
-	elif event is InputEventKey:
-		if flag_map.has(event.keycode):
-			flag_state[flag_map[event.keycode]] = event.pressed
-
-
-func _ready() -> void:
-	axis_state.resize(Axis.size())
-	axis_state.fill(0.0)
-	for axis in AXIS_DEFAULT_VALUES:
-		axis_state[axis] = AXIS_DEFAULT_VALUES[axis]
-	flag_state.resize(Flag.size())
-	flag_state.fill(false)
-	state_updated.emit()
-
-	update_timer = Timer.new()
-	update_timer.wait_time = 1.0 / 60.0
-	update_timer.timeout.connect(_on_update_timer_timeout)
-	add_child(update_timer)
-	update_timer.start()

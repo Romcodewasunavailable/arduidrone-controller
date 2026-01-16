@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch4jiawkholwe"]
+
+[ext_resource type="Script" uid="uid://dnx32ugg8icky" path="res://scripts/custom_graph_display.gd" id="1_eyngr"]
+[ext_resource type="StyleBox" uid="uid://bbl1eb5dnhvs2" path="res://visuals/normal_style_box.tres" id="2_umicm"]
+[ext_resource type="StyleBox" uid="uid://c5o8w4apbaidn" path="res://visuals/background_style_box.tres" id="3_tpkan"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4nlb8"]
+font_size = 30
+
+[node name="CustomGraphDisplay" type="Control" node_paths=PackedStringArray("entry_container", "graph_control", "grid_control", "line_control", "follow_button", "update_timer", "title_label", "line", "main_control")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 362.0
+offset_bottom = 338.0
+script = ExtResource("1_eyngr")
+entry_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/EntryContainer")
+graph_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl")
+grid_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/GridControl")
+line_control = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/LineControl")
+follow_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/PanelContainer/FollowButton")
+update_timer = NodePath("UpdateTimer")
+title = "Graph Title"
+title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
+line = NodePath("Line2D")
+main_control = NodePath("PanelContainer")
+metadata/_custom_type_script = "uid://c7xa78egerg3k"
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(182, 149.5, 149.5, 149.5, 0, 0)
+width = 5.0
+end_cap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 364.0
+offset_bottom = 338.0
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_umicm")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 1
+text = "Graph Title"
+label_settings = SubResource("LabelSettings_4nlb8")
+
+[node name="EntryContainer" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/EntryContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RemoveEntryButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/EntryContainer/HBoxContainer"]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+text = "-"
+
+[node name="AddEntryButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/EntryContainer/HBoxContainer"]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+text = "+"
+
+[node name="GraphControl" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("3_tpkan")
+
+[node name="GridControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="LineControl" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FollowButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+button_pressed = true
+text = "Follow"
+
+[node name="ClearButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Clear"
+
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/EntryContainer/HBoxContainer/RemoveEntryButton" to="." method="_on_remove_entry_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/EntryContainer/HBoxContainer/AddEntryButton" to="." method="_on_add_entry_button_pressed"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/GraphControl" to="." method="_on_graph_control_gui_input"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/PanelContainer/FollowButton" to="." method="_on_follow_button_toggled"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/GraphControl/MarginContainer/HBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

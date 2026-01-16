@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj3sqpr1jj06a"]
+[gd_scene load_steps=13 format=3 uid="uid://bj3sqpr1jj06a"]
 
 [ext_resource type="PackedScene" uid="uid://bc0qiumpes0o1" path="res://scenes/pc_icon.tscn" id="1_5wheo"]
+[ext_resource type="Script" uid="uid://dbfy63nvjivgb" path="res://scripts/arduidrone_controller.gd" id="1_vo144"]
 [ext_resource type="PackedScene" uid="uid://rw2uy735jv2s" path="res://scenes/terminal.tscn" id="2_vo144"]
 [ext_resource type="Script" uid="uid://wgi8om6k8tga" path="res://scripts/udp_commands.gd" id="3_70153"]
 [ext_resource type="PackedScene" uid="uid://ddtvaqys7wmsh" path="res://scenes/udp_control_panel.tscn" id="4_biuh2"]
@@ -10,15 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://b06qn2238wigf" path="res://scenes/drone_model_display.tscn" id="8_5i4ms"]
 [ext_resource type="PackedScene" uid="uid://cv4v4s03etgf3" path="res://scenes/throttle_display.tscn" id="9_w0a3m"]
 [ext_resource type="PackedScene" uid="uid://j5eu4dknyf1s" path="res://scenes/custom_data_display.tscn" id="10_eb4k6"]
+[ext_resource type="PackedScene" uid="uid://ch4jiawkholwe" path="res://scenes/custom_graph_display.tscn" id="11_5wheo"]
 
 [node name="ArduidroneController" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
+script = ExtResource("1_vo144")
 
 [node name="PCIcon" parent="." instance=ExtResource("1_5wheo")]
 layout_mode = 1
@@ -29,10 +34,10 @@ offset_bottom = 16.0
 
 [node name="UDPTerminal" parent="PCIcon" instance=ExtResource("2_vo144")]
 layout_mode = 0
-offset_left = -30.0
-offset_top = -236.0
-offset_right = 405.0
-offset_bottom = -11.0
+offset_left = -32.0
+offset_top = -242.0
+offset_right = 403.0
+offset_bottom = -17.0
 command_script = ExtResource("3_70153")
 title = "UDP Terminal"
 line_anchor = Vector2(50, 150)
@@ -49,17 +54,17 @@ grow_vertical = 2
 
 [node name="UDPControlPanel" parent="PCIcon/UDPTerminal/Control" instance=ExtResource("4_biuh2")]
 layout_mode = 0
-offset_left = 101.0
-offset_top = -127.5
-offset_right = 454.0
-offset_bottom = 106.5
+offset_left = 49.0
+offset_top = -109.5
+offset_right = 402.0
+offset_bottom = 124.5
 
 [node name="ControllerDataDisplay" parent="PCIcon" instance=ExtResource("5_sgw6o")]
 layout_mode = 0
-offset_left = -13.0
-offset_top = 21.0
-offset_right = 233.0
-offset_bottom = 195.0
+offset_left = -27.0
+offset_top = 27.0
+offset_right = 219.0
+offset_bottom = 201.0
 script = ExtResource("6_e8m3b")
 keys = PackedStringArray("THROTTLE", "YAW", "PITCH", "ROLL")
 title = "Controller Data"
@@ -77,10 +82,10 @@ grow_vertical = 0
 
 [node name="ControllerControlPanel" parent="PCIcon/ControllerDataDisplay/Control" instance=ExtResource("7_66mgk")]
 layout_mode = 0
-offset_left = -151.0
-offset_top = 28.0
-offset_right = 223.0
-offset_bottom = 570.0
+offset_left = -124.0
+offset_top = 22.0
+offset_right = 250.0
+offset_bottom = 564.0
 
 [node name="DroneModelDisplay" parent="." instance=ExtResource("8_5i4ms")]
 layout_mode = 1
@@ -89,53 +94,74 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -430.0
-offset_top = -148.0
-offset_right = 112.0
-offset_bottom = 364.0
+offset_left = -518.0
+offset_top = -105.0
+offset_right = 24.0
+offset_bottom = 407.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ThrottleDisplay" parent="DroneModelDisplay" instance=ExtResource("9_w0a3m")]
 layout_mode = 0
-offset_left = -98.0
-offset_top = 176.0
-offset_right = 142.0
-offset_bottom = 264.0
+offset_left = 11.0
+offset_top = -79.0
+offset_right = 251.0
+offset_bottom = 9.0
 line_anchor = Vector2(59, 62)
 
 [node name="ThrottleDisplay2" parent="DroneModelDisplay" instance=ExtResource("9_w0a3m")]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 208.0
-offset_right = 624.0
-offset_bottom = 296.0
-drone_axis = 1
+offset_left = 262.0
+offset_top = -78.0
+offset_right = 502.0
+offset_bottom = 10.0
+key = 1
 line_anchor = Vector2(483, 62)
 
 [node name="ThrottleDisplay3" parent="DroneModelDisplay" instance=ExtResource("9_w0a3m")]
 layout_mode = 0
-offset_left = -107.0
-offset_top = 510.0
-offset_right = 133.0
-offset_bottom = 598.0
-drone_axis = 2
+offset_left = 24.0
+offset_top = 498.0
+offset_right = 264.0
+offset_bottom = 586.0
+key = 2
 line_anchor = Vector2(59, 450)
 
 [node name="ThrottleDisplay4" parent="DroneModelDisplay" instance=ExtResource("9_w0a3m")]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 521.0
-offset_right = 630.0
-offset_bottom = 609.0
-drone_axis = 3
+offset_left = 273.0
+offset_top = 498.0
+offset_right = 513.0
+offset_bottom = 586.0
+key = 3
 line_anchor = Vector2(483, 450)
 
-[node name="CustomDataDisplay" parent="DroneModelDisplay" instance=ExtResource("10_eb4k6")]
+[node name="DroneDataDisplay" parent="DroneModelDisplay" instance=ExtResource("10_eb4k6")]
 layout_mode = 0
-offset_left = 664.0
-offset_top = -119.0
-offset_right = 854.0
-offset_bottom = -9.0
+offset_left = 445.0
+offset_top = 202.0
+offset_right = 635.0
+offset_bottom = 312.0
 title = "Drone Data"
 line_anchor = Vector2(271, 180)
+
+[node name="Control" type="Control" parent="DroneModelDisplay/DroneDataDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="DroneGraphDisplay" parent="DroneModelDisplay/DroneDataDisplay/Control" instance=ExtResource("11_5wheo")]
+layout_mode = 0
+offset_left = 46.0
+offset_top = -268.0
+offset_right = 791.0
+offset_bottom = 312.0
+keys = PackedInt32Array()
+values = PackedFloat32Array()
+colors = PackedColorArray()
+title = "Drone Data Graph"
